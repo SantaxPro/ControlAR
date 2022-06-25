@@ -5,7 +5,6 @@ import theme from '../UI/theme';
 export default function CoursesContainer() {
     return (
         <View style={styles.container}>
-
         </View>
     );
 }
