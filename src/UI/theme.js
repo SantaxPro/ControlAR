@@ -7,11 +7,8 @@ const theme = {
         white: '#F5F5F4',
     },
     fontSizes: {
-        buttonTextSize: '12', 
-        titleTextSize: '14'
-    },
-    fonts: {
-        main: 'roboto',
+        buttonTextSize: 12, 
+        titleTextSize: 16,
     },
     fontWeight: {
         normal: '400',

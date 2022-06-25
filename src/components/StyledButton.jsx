@@ -1,5 +1,5 @@
 import {View, Button, Text, StyleSheet } from 'react-native';
-import theme from './theme';
+import theme from '../UI/theme';
 
 const styles = StyleSheet.create({
     buttonStandard: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         color: theme.colors.secondaryGrey,
         justifyContent: 'center',
         borderColor: theme.colors.secondaryGrey,
-        borderWidth: .5,
+        borderWidth: 1,
     },
     thinButton: {
         width: 50,
