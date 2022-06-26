@@ -58,3 +58,5 @@ const students = [
         student_lastname: 'Perez',
     },
 ]
+
+export { courses, students };

@@ -1,4 +1,5 @@
-import {View, Button, Text, StyleSheet } from 'react-native';
+import react, { useState } from "react";
+import {View, Button, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import theme from '../UI/theme';
 
 const styles = StyleSheet.create({
@@ -20,8 +21,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     thinButton: {
-        width: 50,
-        height: 15, 
+        width: 80,
+        height: 20, 
         borderRadius: 50,
         color: theme.colors.white,
         justifyContent: 'center',
@@ -37,17 +38,21 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function StyledButton(standard, text, transparent, thin, thick, type) {
+export default function StyledButton(props) {
+
     const buttonStyles = [
         styles.buttonStandard,
-        type == 'transparent' && styles.transparentButton,
-        type == 'thin' && styles.thinButton,
-        type == 'thick' && styles.thickButton,
+        props.type == 'transparent' && styles.transparentButton,
+        props.type == 'thin' && styles.thinButton,
+        props.type == 'thick' && styles.thickButton,
     ]
+    
     return (
-        <Button style={buttonStyles}>
-            <Text>{text}</Text> 
-        </Button>
+
+        <TouchableOpacity style={[buttonStyles, {alignItems: 'center'}]} >
+            <Text>{props.text}</Text>
+        </TouchableOpacity>    
+
         );
 }
 
