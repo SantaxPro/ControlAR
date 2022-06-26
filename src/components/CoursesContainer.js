@@ -4,22 +4,14 @@ import theme from "../UI/theme";
 import { courses } from "../data/testdata";
 import CourseCard from "./CourseCard";
 
-export default function CoursesContainer() {
-  
+export default function CoursesContainer( { navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
         style={styles.list}
-
         data={courses}
-
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-
-        renderItem={
-          ({ item, index }) => 
-          ( <CourseCard {...item} /> )
-        }
-        
+        renderItem={({ item, index }) => <CourseCard {...item} />}
       />
     </View>
   );
@@ -36,8 +28,7 @@ const styles = StyleSheet.create({
     padding: 5,
     flexDirection: "column",
   },
-    separator: {
-        height: 10,
-    }
-
+  separator: {
+    height: 10,
+  },
 });

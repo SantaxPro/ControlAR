@@ -33,6 +33,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: theme.colors.primaryGrey,
   },
+  squareButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 10,
+    justifyContent: "center",
+    backgroundColor: theme.colors.primaryGrey,
+  }
 });
 
 export default function StyledButton(props) {
@@ -43,14 +50,11 @@ export default function StyledButton(props) {
     props.type == "transparent" && styles.transparentButton,
     props.type == "thin" && styles.thinButton,
     props.type == "thick" && styles.thickButton,
+    props.type == 'square' && styles.squareButton,
   ];
 
-  const onPress = () => {
-    console.log("Pressed course card id: " + props.id)
-  } 
-
   return (
-    <TouchableOpacity onPress={onPress} style={[buttonStyles, { alignItems: "center" }]}>
+    <TouchableOpacity onPress={props.onPress}style={[buttonStyles, { alignItems: "center" }]}>
       <Text style={{ color: theme.colors.white, fontSize: theme.fontSizes.buttonTextSize }}>{props.text}</Text>
     </TouchableOpacity>
   );
