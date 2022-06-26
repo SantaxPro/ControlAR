@@ -8,7 +8,8 @@ const theme = {
     },
     fontSizes: {
         buttonTextSize: 12, 
-        titleTextSize: 16,
+        titleTextSize: 18,
+        subheading: 24,
     },
     fontWeight: {
         normal: '400',

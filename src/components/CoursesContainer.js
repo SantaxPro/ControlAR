@@ -5,13 +5,21 @@ import { courses } from "../data/testdata";
 import CourseCard from "./CourseCard";
 
 export default function CoursesContainer() {
+  
   return (
     <View style={styles.container}>
       <FlatList
         style={styles.list}
+
         data={courses}
+
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        renderItem={({ item, index }) => <CourseCard {...item} />}
+
+        renderItem={
+          ({ item, index }) => 
+          ( <CourseCard {...item} /> )
+        }
+        
       />
     </View>
   );
