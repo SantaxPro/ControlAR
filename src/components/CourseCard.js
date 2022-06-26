@@ -1,14 +1,34 @@
-import react from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import react, { useState} from "react";
+import { View, Text, StyleSheet, Image, TouchableHighlight } from "react-native";
 import theme from "../UI/theme";
 import StyledButton, {ThickButton} from "./StyledButton";
 
+
+function FloatingCard() {
+    const [pressed, setPressed] = useState(false);
+
+    return(
+        <View style={styles.floatingCard}>
+            <Text>HOLIWIS</Text>
+        </View>
+    )
+}
+
 export default function CourseCard(props) {
+
+    const showFloating = () => {
+        console.log("touched")
+        return (
+            <FloatingCard />
+        )
+    }
     return (
         <View key={props.id} style={styles.container}>
             <View style={styles.horizontalcontainer}>
                 <Text style={styles.title}>{props.name}</Text>
-                <Image style={{marginTop: 5}} source={require('../../assets/dotsicon.png')}/>
+                <TouchableHighlight onPress={showFloating}>
+                    <Image style={{marginTop: 5}} source={require('../../assets/dotsicon.png')}/>
+                </TouchableHighlight>
             </View>
             <StyledButton text="Tomar asistencia" type="thick" id={props.id} />
         </View>
@@ -37,5 +57,11 @@ const styles = StyleSheet.create({
         fontSize: theme.fontSizes.subheading,
         marginBottom: 5,
         color: theme.colors.secondaryGrey
+    },
+    floatingCard: {
+        width: 500,
+        height: 600,
+        borderRadius: 70,
+        backgroundColor: '#fff',
     }
 })

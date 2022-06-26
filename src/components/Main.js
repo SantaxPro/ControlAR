@@ -1,20 +1,8 @@
 import react from "react";
-import { View, Text, StyleSheet, StatusBar } from "react-native";
-import Constants from 'expo-constants';
-import TopBar from "./TopBar";
-import CoursesContainer from "./CoursesContainer";
+import CoursesScreen from "../screens/CoursesScreen";
 
 export default function Main() {
     return (
-        <View style={styles.container}>
-            <TopBar title="Mis cursos"/>
-            <CoursesContainer/>
-        </View>
+            <CoursesScreen />
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flexGrow: 1,
-    }
-});
