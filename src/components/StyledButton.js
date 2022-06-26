@@ -9,13 +9,11 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.primaryGrey,
         borderRadius: 50,
         justifyContent: 'center',
-        color: theme.colors.white,
     }, 
     transparentButton: {
         width: 125,
         height: 35, 
         borderRadius: 50,
-        color: theme.colors.secondaryGrey,
         justifyContent: 'center',
         borderColor: theme.colors.secondaryGrey,
         borderWidth: 1,
@@ -24,7 +22,6 @@ const styles = StyleSheet.create({
         width: 80,
         height: 20, 
         borderRadius: 50,
-        color: theme.colors.white,
         justifyContent: 'center',
         backgroundColor: theme.colors.primaryGrey,
     },
@@ -32,7 +29,6 @@ const styles = StyleSheet.create({
         width: 80,
         height: 30, 
         borderRadius: 50,
-        color: theme.colors.white,
         justifyContent: 'center',
         backgroundColor: theme.colors.primaryGrey,
     },
@@ -50,7 +46,7 @@ export default function StyledButton(props) {
     return (
 
         <TouchableOpacity style={[buttonStyles, {alignItems: 'center'}]} >
-            <Text>{props.text}</Text>
+            <Text style={{color: theme.colors.white}}>{props.text}</Text>
         </TouchableOpacity>    
 
         );
