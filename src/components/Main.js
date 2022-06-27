@@ -9,11 +9,14 @@ import StyledButton from "./StyledButton";
 import ConfigButton from './ConfigButton.js';
 import { FontAwesome } from '@expo/vector-icons'; 
 import theme from "../UI/theme";
+import {TailwindProvider} from 'tailwind-rn';
+import utilities from './tailwind.json';
 
 const stack = createNativeStackNavigator();
 
 export default function Main() {
     return (
+        <TailwindProvider utilities={utilities}>
         <NavigationContainer>
             <stack.Navigator initialRouteName="Miscursos">
                 <stack.Screen name="Miscursos" component={CoursesScreen} options={{
@@ -21,10 +24,11 @@ export default function Main() {
                     <ConfigButton onPress={()=>{navigation.navigate('Login')}}/>
                 ),
             }}/>
-            
+
                 <stack.Screen name="Curso" component={SingleCourseScreen} options={({ route })=>({title: route.params.courseName})} />
                 <stack.Screen name="Login" component={LoginScreen} />
             </stack.Navigator>
         </NavigationContainer>
+        </TailwindProvider>
     );
 }
