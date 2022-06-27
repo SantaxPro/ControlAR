@@ -3,7 +3,7 @@ import theme from "../UI/theme";
 
 export default function ConfigurationScreen({navigation}) {
     return(
-        <View style={styles.container}>
+        <View >
             <Text>Configs</Text>
         </View>
     )

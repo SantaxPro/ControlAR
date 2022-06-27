@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function StyledButton(props) {
+export default function StyledButton(props, children) {
 
   const buttonStyles = [
     styles.buttonStandard,

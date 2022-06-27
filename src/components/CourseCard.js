@@ -1,18 +1,24 @@
 import react from "react";
-import { View, Text, StyleSheet, Image, TouchableHighlight } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableHighlight, TouchableOpacity } from "react-native";
 import theme from "../UI/theme";
 import StyledButton from "./StyledButton";
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 export default function CourseCard(props) {
 
+    const handleOptionsTouch = (e) => {
+        props.onOptionsPress(e.target.value);
+    }
+
     return (
+    <TouchableOpacity onPress={(e)=>{props.nav.push('Curso', {screen: 'Estudiantes', params: { courseId: props.id, name: props.name }})}}>
         <View key={props.id} style={styles.container}>
 
             <View style={[styles.horizontalcontainer, {justifyContent: 'space-between'}]}>
 
                 <Text style={styles.title}>{props.name}</Text>
                 
-                <TouchableHighlight style={{overflow: 'visible'}}>
+                <TouchableHighlight onPress={handleOptionsTouch}>
                     <Image style={{marginTop: 5}} source={require('../../assets/dotsicon.png')}/>
                 </TouchableHighlight>
 
@@ -22,24 +28,16 @@ export default function CourseCard(props) {
 
                 <StyledButton onPress={()=>{console.log("gola")}} text="Tomar asistencia" type="thick" id={props.id} />
                 <Text>   </Text>
-                <StyledButton  onPress={(e)=>{props.nav.push('Curso', {screen: 'Estudiantes', params: { courseId: props.id, name: props.name }})}} type="square"/>
+                <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', color: theme.colors.primaryGrey}}>
+                    <Text style={{fontSize: 18}}> {props.array_alumns.length} </Text>
+                    <MaterialIcons name="people" size={24} color={theme.colors.primaryGrey} />
+                </View>
 
             </View>
-
         </View>
+    </TouchableOpacity>
     );
 }
-
-/*function FloatingCard( ) {
-    const [pressed, setPressed] = useState(false);
-
-    return(
-        <View style={styles.floatingCard}>
-            <Text>HOLIWIS</Text>
-        </View>
-    )
-}*/
-
 
 const styles = StyleSheet.create({
     container: {
