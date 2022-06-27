@@ -22,12 +22,11 @@ export default function CoursesScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
       flexGrow: 1,
-      padding: 10,
+      paddingHorizontal: 3,
       backgroundColor: theme.colors.screensBackground,
     },
     list: {
       flexGrow: 1,
-      padding: 5,
       flexDirection: "column",
     },
     separator: {

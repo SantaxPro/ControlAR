@@ -22,7 +22,7 @@ export default function CourseCard(props) {
 
                 <StyledButton onPress={()=>{console.log("gola")}} text="Tomar asistencia" type="thick" id={props.id} />
                 <Text>   </Text>
-                <StyledButton  onPress={(e)=>{props.nav.push('Curso', {courseId: 1, courseName: '6to 1ra'})}}type="square"/>
+                <StyledButton  onPress={(e)=>{props.nav.push('Curso', {screen: 'Estudiantes', params: { courseId: props.id }})}} type="square"/>
 
             </View>
 
@@ -47,10 +47,9 @@ const styles = StyleSheet.create({
         height: 95,
         backgroundColor: theme.colors.lightGrey,
         paddingHorizontal: 30,
-        borderRadius: 10,
-        borderWidth: 2,
         justifyContent: 'center',
-        borderColor: theme.colors.secondaryGrey,
+        elevation: 3,
+        borderRadius: 10,
         flexDirection: 'column',
     },
     horizontalcontainer: {

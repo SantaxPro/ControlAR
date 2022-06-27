@@ -5,11 +5,13 @@ const theme = {
         secondaryGrey: '#2D2E33',
         lightGrey: '#E9E9E9',
         white: '#F5F5F4',
+        red: '#CC2F38',
     },
     fontSizes: {
         buttonTextSize: 12, 
         titleTextSize: 18,
         subheading: 24,
+        bodyTextSize: 14,
     },
     fontWeight: {
         normal: '400',

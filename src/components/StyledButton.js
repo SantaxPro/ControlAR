@@ -39,6 +39,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     backgroundColor: theme.colors.primaryGrey,
+  },
+  redButton: {
+    width: 85,
+    height: 35,
+    backgroundColor: theme.colors.red,
+    padding: 10,
+    borderRadius: 50,
   }
 });
 
@@ -50,6 +57,7 @@ export default function StyledButton(props) {
     props.type == "thin" && styles.thinButton,
     props.type == "thick" && styles.thickButton,
     props.type == 'square' && styles.squareButton,
+    props.type == 'red' && styles.redButton,
   ];
 
   return (
