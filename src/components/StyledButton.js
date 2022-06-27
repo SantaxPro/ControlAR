@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react from "react";
 import { View, Button, Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../UI/theme";
 
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
 });
 
 export default function StyledButton(props) {
-  const [data, setData] = useState(undefined);
 
   const buttonStyles = [
     styles.buttonStandard,
