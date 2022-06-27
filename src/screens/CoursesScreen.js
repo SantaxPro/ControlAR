@@ -5,7 +5,7 @@ import { courses } from "../data/testdata";
 import CourseCard from "../components/CourseCard";
 import StyledButton from "../components/StyledButton";
 import { MaterialIcons } from '@expo/vector-icons'; 
-
+import ModalHorizontalOption from "../components/modalHorizontalOption";
 export default function CoursesScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const handleTouch = () => {
@@ -38,8 +38,9 @@ export default function CoursesScreen({ navigation }) {
             </TouchableOpacity>
           </View>
           <View style={styles.optionContainer}>
-              <StyledButton text='Editar curso' type='thin' onPress={editCourse}/>
-              <StyledButton text='Eliminar curso' type='red' onPress={editCourse}/>
+              <ModalHorizontalOption action="Editar curso" iconName="edit"/>
+              <Text>     </Text>
+              <ModalHorizontalOption action="Eliminar curso" iconName="delete"/>
           </View>
         </View>
       </Modal>
@@ -82,9 +83,10 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
     },
     optionContainer: {
-      flexDirection: "row",
+      flexDirection: "column",
       alignItems: 'flex-start',
       padding: 10,
-    }
+    },
+
   });
   
