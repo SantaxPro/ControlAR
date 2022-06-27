@@ -15,7 +15,7 @@ const theme = {
     },
     fontWeight: {
         normal: '400',
-        medium: '550',
+        medium: '600',
     },
 }
 

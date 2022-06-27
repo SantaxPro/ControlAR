@@ -18,9 +18,9 @@ export default function CourseCard(props) {
 
                 <Text style={styles.title}>{props.name}</Text>
                 
-                <TouchableHighlight onPress={handleOptionsTouch}>
+                <TouchableOpacity onPress={handleOptionsTouch}>
                     <Image style={{marginTop: 5}} source={require('../../assets/dotsicon.png')}/>
-                </TouchableHighlight>
+                </TouchableOpacity>
 
             </View>
 

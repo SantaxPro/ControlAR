@@ -1,14 +1,19 @@
 import react , { useState }from "react";
-import { View, Text, StyleSheet, FlatList, Modal, Button } from "react-native";
+import { View, Text, StyleSheet, FlatList, Modal, Button, TouchableOpacity } from "react-native";
 import theme from "../UI/theme";
 import { courses } from "../data/testdata";
 import CourseCard from "../components/CourseCard";
 import StyledButton from "../components/StyledButton";
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 export default function CoursesScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const handleTouch = () => {
     setModalVisible(true);
+  }
+  const editCourse = () => {
+    setModalVisible(false);
+
   }
   return (
     <View style={styles.container}>
@@ -26,8 +31,16 @@ export default function CoursesScreen({ navigation }) {
       transparent={true}
       >
         <View style={styles.modal}>
-          <Text>Modal</Text>
-          
+          <View style={styles.titleContainer}>
+            <Text style={{fontSize: theme.fontSizes.titleTextSize, fontWeight: theme.fontWeight.medium}}>Mas opciones.</Text>
+            <TouchableOpacity onPress={()=>{setModalVisible(!modalVisible)}}>
+                <MaterialIcons name="close" size={24} color={theme.colors.primaryGrey} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.optionContainer}>
+              <StyledButton text='Editar curso' type='thin' onPress={editCourse}/>
+              <StyledButton text='Eliminar curso' type='red' onPress={editCourse}/>
+          </View>
         </View>
       </Modal>
     </View>
@@ -50,8 +63,6 @@ const styles = StyleSheet.create({
     modal: {
       height: 300,
       width: '100%',
-      justifyContent: "center",
-      alignItems: "center",
       position: 'absolute',
       bottom: 0,
       left: 0,
@@ -59,6 +70,21 @@ const styles = StyleSheet.create({
       borderTopLeftRadius: 30,
       elevation: 3,
       backgroundColor: theme.colors.screensBackground,
+      flexDirection: "column",
+      padding: 20,
+    },
+    titleContainer: {
+      justifyContent: 'space-between',
+       alignItems: 'center',
+        borderBottomColor: theme.colors.primaryGrey,
+         borderBottomWidth: 1,
+          paddingVertical: 5,
+      flexDirection: 'row',
+    },
+    optionContainer: {
+      flexDirection: "row",
+      alignItems: 'flex-start',
+      padding: 10,
     }
   });
   
