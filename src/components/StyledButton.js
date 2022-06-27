@@ -1,4 +1,4 @@
-import react from "react";
+import react  from "react";
 import { View, Button, Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../UI/theme";
 

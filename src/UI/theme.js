@@ -3,7 +3,7 @@ const theme = {
         screensBackground: '#F2F1F0',
         primaryGrey: '#2A2C33',
         secondaryGrey: '#2D2E33',
-        lightGrey: '#EFEFF0',
+        lightGrey: '#E9E9E9',
         white: '#F5F5F4',
     },
     fontSizes: {

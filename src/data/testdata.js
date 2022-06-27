@@ -4,6 +4,33 @@ const courses = [
         name: '6to 1ra',
         alumns: 1,
         number_alumns: 30,
+        array_alumns: [
+            {
+                student_id: 1,
+                student_name: 'Juan',
+                student_lastname: 'Perez',
+            },
+            {
+                student_id: 2,
+                student_name: 'Juan',
+                student_lastname: 'Perez',
+            },
+            {
+                student_id: 3,
+                student_name: 'Juan',
+                student_lastname: 'Perez',
+            },
+            {
+                student_id: 4,
+                student_name: 'Juan',
+                student_lastname: 'Perez',
+            },
+            {
+                student_id: 5,
+                student_name: 'Juan',
+                student_lastname: 'Perez',
+            },
+        ],
     },
     {
         id: 2,

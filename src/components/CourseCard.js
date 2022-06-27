@@ -21,8 +21,8 @@ export default function CourseCard(props) {
             <View style={[styles.horizontalcontainer, {justifyContent: 'flex-start'}]}>
 
                 <StyledButton onPress={()=>{console.log("gola")}} text="Tomar asistencia" type="thick" id={props.id} />
-                <Text></Text>
-                <StyledButton  onPress={()=>{console.log("gdfg")}}type="square"/>
+                <Text>   </Text>
+                <StyledButton  onPress={(e)=>{props.nav.push('Curso', {courseId: 1, courseName: '6to 1ra'})}}type="square"/>
 
             </View>
 
