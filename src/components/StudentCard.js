@@ -4,7 +4,6 @@ import StyledButton from './StyledButton'
 import { MaterialIcons } from '@expo/vector-icons'; 
 
 export default function StudentCard(props){
-    console.log(props)
     const EditStudent = () => {
         Alert.alert('Editar estudiante')
     }

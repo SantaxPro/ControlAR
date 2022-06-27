@@ -16,15 +16,24 @@ export default function Main() {
     return (
         <NavigationContainer>
             <stack.Navigator initialRouteName="Mis cursos">
-                <stack.Screen name="Mis cursos" component={CoursesScreen} options={{
-                headerRight: () => (
-                    <TouchableOpacity>
-                        <FontAwesome name="gear" size={24} color={theme.colors.primaryGrey} />
-                    </TouchableOpacity>
-                ),
-            }}/>
+                <stack.Screen name="Mis cursos"
+                component={CoursesScreen} 
+                options={{
+                    headerRight: () => (
+                        <TouchableOpacity>
+                            <FontAwesome name="gear" size={24} color={theme.colors.primaryGrey} />
+                        </TouchableOpacity>
+                    ),
+                }}/>
 
-                <stack.Screen name="Curso" component={SingleCourseScreen} options={({ route })=>({title: route.params.courseName})} />
+                <stack.Screen name="Curso"
+                 component={SingleCourseScreen}
+                  options={
+                    ({ route })=>({
+                        headerTitle: route.params.params.name
+                    })
+                }
+                />
                 <stack.Screen name="Login" component={LoginScreen} />
             </stack.Navigator>
         </NavigationContainer>

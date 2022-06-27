@@ -22,7 +22,7 @@ export default function CourseCard(props) {
 
                 <StyledButton onPress={()=>{console.log("gola")}} text="Tomar asistencia" type="thick" id={props.id} />
                 <Text>   </Text>
-                <StyledButton  onPress={(e)=>{props.nav.push('Curso', {screen: 'Estudiantes', params: { courseId: props.id }})}} type="square"/>
+                <StyledButton  onPress={(e)=>{props.nav.push('Curso', {screen: 'Estudiantes', params: { courseId: props.id, name: props.name }})}} type="square"/>
 
             </View>
 

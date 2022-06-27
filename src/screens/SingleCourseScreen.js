@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, StatusBar, FlatList} from 'react-native'
 import {courses} from '../data/testdata'
 import StudentCard from '../components/StudentCard.js';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialIcons } from '@expo/vector-icons'; 
+import theme from '../UI/theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,11 +38,24 @@ function LogsScreen(props) {
 }
 
 export default function SingleCourseScreen({route,  navigation }) {
-
+    console.log(route)
     return (
         <View style={styles.container}>
-            <Tab.Navigator>
-                <Tab.Screen name="Estudiantes" component={StudentsScreen}/>
+            <Tab.Navigator screenOptions={({route})=>{
+                return{
+                    tabBarIcon: ({color, size}) => {
+                        return <MaterialIcons name="school" size={size} color={color} />
+                    },
+                    headerTitleAlign: 'center',
+                }
+            }}>
+                <Tab.Screen name="Estudiantes" component={StudentsScreen}
+                options={{
+                    tabBarIcon: ()=>{
+                        return <MaterialIcons name='people' size={24} color={theme.colors.primaryGrey} />
+                    }
+                }} 
+                />
                 <Tab.Screen name="Planilla" component={LogsScreen} />
             </Tab.Navigator>
         </View>
