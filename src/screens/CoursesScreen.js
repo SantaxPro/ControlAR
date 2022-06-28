@@ -6,7 +6,8 @@ import CourseCard from "../components/CourseCard";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import ModalHorizontalOption from "../components/modalHorizontalOption";
 import StyledButton from "../components/StyledButton";
-import { AntDesign } from '@expo/vector-icons'; 
+
+
 export default function CoursesScreen({ navigation, route }) {
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -34,25 +35,26 @@ export default function CoursesScreen({ navigation, route }) {
           renderItem={({ item }) => <CourseCard {...item} nav={navigation} onOptionsPress={handleTouch}/>}
         />
       </View>
-
+      
+      
       <Modal
       visible={modalVisible}
       animationType="slide"
       transparent={true}
       >
         <View style={styles.modal}>
+
           <View style={styles.titleContainer}>
-
             <Text style={{fontSize: theme.fontSizes.titleTextSize, fontWeight: theme.fontWeight.medium}}>Mas opciones.</Text>
-            <StyledButton type="square" onPress={() => {console.log("working")}} icon={<AntDesign name="forward" size={24} color="black" />} />
-
-
+            <StyledButton type="square" onPress={() => {console.log("working")}} icon={<Text>Hola</Text>} />
           </View>
+
           <View style={styles.optionContainer}>
-              <ModalHorizontalOption action="Editar curso" iconName="edit" onPress={editCourse}/>
+              <ModalHorizontalOption action="Editar curso" icon={<MaterialIcons name={"edit"} size={30} color={theme.colors.primaryGrey} />} onPress={editCourse}/>
               <Text>     </Text>
-              <ModalHorizontalOption action="Eliminar curso" iconName="delete" onPress={deleteCourse}/>
+              <ModalHorizontalOption action="Eliminar curso" icon={<MaterialIcons name={"delete"} size={30} color={theme.colors.primaryGrey} />} onPress={deleteCourse}/>
           </View>
+
         </View>
         
       </Modal>
@@ -103,7 +105,4 @@ const styles = StyleSheet.create({
 
   });
 
-/*             <TouchableOpacity onPress={()=>{setModalVisible(!modalVisible)}}>
-                <MaterialIcons name="close" size={24} color={theme.colors.primaryGrey} />
-            </TouchableOpacity>*/
   

@@ -18,10 +18,12 @@ export default function Main() {
 
     return (
         <NavigationContainer>
-            <stack.Navigator initialRouteName="Mis cursos">
-                <stack.Screen name="Mis cursos"
-                component={CoursesScreen} 
 
+            <stack.Navigator initialRouteName="Mis cursos">
+
+                <stack.Screen 
+                name="Mis cursos"
+                component={CoursesScreen} 
                 options={({ navigation }) => ({
                     headerRight: () => (
                         <TouchableOpacity onPress={()=>{navigation.navigate('ConfigurationScreen')}}>
@@ -31,18 +33,33 @@ export default function Main() {
                   })}
                 />
 
-                <stack.Screen name="Curso"
-                 component={SingleCourseScreen}
-                 options={
+                <stack.Screen 
+                name="Curso"
+                component={SingleCourseScreen}
+                options={
                     ({ route })=>({
                         headerTitle: route.params.params.name
                     })
                  }
                 />
-                <stack.Screen name="Login" component={LoginScreen} />
-                <stack.Screen name="ConfigurationScreen" component={ConfigurationScreen} />
-                <stack.Screen name="Asistencia" component={AttendanceScreen}/>
+
+                <stack.Screen 
+                name="Login" 
+                component={LoginScreen} 
+                />
+
+                <stack.Screen 
+                name="ConfigurationScreen" 
+                component={ConfigurationScreen} 
+                />
+
+                <stack.Screen 
+                name="Asistencia" 
+                component={AttendanceScreen}
+                />
+
             </stack.Navigator>
+            
         </NavigationContainer>
     );
 }

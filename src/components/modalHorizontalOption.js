@@ -1,11 +1,11 @@
 import { View , Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../UI/theme";
-import {MaterialIcons} from '@expo/vector-icons';
+
 
 export default function ModalHorizontalOption(props) {
     return(
         <TouchableOpacity style={styles.Xcontainer} onPress={props.onPress}>
-            <MaterialIcons name={props.iconName} size={30} color={theme.colors.primaryGrey} />
+            {props.icon}
             <Text>     </Text>
             <Text style={styles.optionText}>{props.action}</Text>
         </TouchableOpacity>
