@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     backgroundColor: theme.colors.primaryGrey,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   redButton: {
     width: 85,
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function StyledButton(props, children) {
+export default function StyledButton(props) {
 
   const buttonStyles = [
     styles.buttonStandard,
@@ -60,8 +62,16 @@ export default function StyledButton(props, children) {
     props.type == 'red' && styles.redButton,
   ];
 
+  if (props.icon) {
+    return (
+      <TouchableOpacity style={buttonStyles} onPress={props.onPress}>
+        {props.icon}
+      </TouchableOpacity>
+    )
+  }
+
   return (
-    <TouchableOpacity onPress={props.onPress}style={[buttonStyles, { alignItems: "center" }]}>
+    <TouchableOpacity onPress={props.onPress} style={[buttonStyles, { alignItems: "center" }]}>
       <Text style={{ color: theme.colors.white, fontSize: theme.fontSizes.buttonTextSize }}>{props.text}</Text>
     </TouchableOpacity>
   );

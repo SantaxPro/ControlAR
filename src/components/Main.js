@@ -10,6 +10,7 @@ import ConfigButton from './ConfigButton.js';
 import { FontAwesome } from '@expo/vector-icons'; 
 import theme from "../UI/theme";
 import ConfigurationScreen from '../screens/ConfigurationScreen';
+import AttendanceScreen from "../screens/AttendanceScreen";
 
 const stack = createNativeStackNavigator();
 
@@ -40,6 +41,7 @@ export default function Main() {
                 />
                 <stack.Screen name="Login" component={LoginScreen} />
                 <stack.Screen name="ConfigurationScreen" component={ConfigurationScreen} />
+                <stack.Screen name="Asistencia" component={AttendanceScreen}/>
             </stack.Navigator>
         </NavigationContainer>
     );

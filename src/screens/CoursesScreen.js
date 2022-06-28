@@ -1,22 +1,31 @@
 import react , { useState }from "react";
-import { View, Text, StyleSheet, FlatList, Modal, Button, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, FlatList, Modal, Button, TouchableOpacity, Alert } from "react-native";
 import theme from "../UI/theme";
 import { courses } from "../data/testdata";
 import CourseCard from "../components/CourseCard";
-import StyledButton from "../components/StyledButton";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import ModalHorizontalOption from "../components/modalHorizontalOption";
-export default function CoursesScreen({ navigation }) {
+import StyledButton from "../components/StyledButton";
+import { AntDesign } from '@expo/vector-icons'; 
+export default function CoursesScreen({ navigation, route }) {
+
   const [modalVisible, setModalVisible] = useState(false);
+
   const handleTouch = () => {
     setModalVisible(true);
   }
-  const editCourse = () => {
-    setModalVisible(false);
 
+  const editCourse = () => {
+    Alert.alert("Editar curso");
   }
+
+  const deleteCourse = () => {
+    Alert.alert("Eliminar curso")
+  }
+
   return (
     <View style={styles.container}>
+
       <View style={styles.container}>
         <FlatList
           style={styles.list}
@@ -25,6 +34,7 @@ export default function CoursesScreen({ navigation }) {
           renderItem={({ item }) => <CourseCard {...item} nav={navigation} onOptionsPress={handleTouch}/>}
         />
       </View>
+
       <Modal
       visible={modalVisible}
       animationType="slide"
@@ -32,18 +42,21 @@ export default function CoursesScreen({ navigation }) {
       >
         <View style={styles.modal}>
           <View style={styles.titleContainer}>
+
             <Text style={{fontSize: theme.fontSizes.titleTextSize, fontWeight: theme.fontWeight.medium}}>Mas opciones.</Text>
-            <TouchableOpacity onPress={()=>{setModalVisible(!modalVisible)}}>
-                <MaterialIcons name="close" size={24} color={theme.colors.primaryGrey} />
-            </TouchableOpacity>
+            <StyledButton type="square" onPress={() => {console.log("working")}} icon={<AntDesign name="forward" size={24} color="black" />} />
+
+
           </View>
           <View style={styles.optionContainer}>
-              <ModalHorizontalOption action="Editar curso" iconName="edit"/>
+              <ModalHorizontalOption action="Editar curso" iconName="edit" onPress={editCourse}/>
               <Text>     </Text>
-              <ModalHorizontalOption action="Eliminar curso" iconName="delete"/>
+              <ModalHorizontalOption action="Eliminar curso" iconName="delete" onPress={deleteCourse}/>
           </View>
         </View>
+        
       </Modal>
+
     </View>
   );
 }
@@ -89,4 +102,8 @@ const styles = StyleSheet.create({
     },
 
   });
+
+/*             <TouchableOpacity onPress={()=>{setModalVisible(!modalVisible)}}>
+                <MaterialIcons name="close" size={24} color={theme.colors.primaryGrey} />
+            </TouchableOpacity>*/
   

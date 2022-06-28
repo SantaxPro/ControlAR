@@ -4,11 +4,11 @@ import {MaterialIcons} from '@expo/vector-icons';
 
 export default function ModalHorizontalOption(props) {
     return(
-        <TouchableOpacity style={styles.Xcontainer}>
+        <TouchableOpacity style={styles.Xcontainer} onPress={props.onPress}>
             <MaterialIcons name={props.iconName} size={30} color={theme.colors.primaryGrey} />
             <Text>     </Text>
             <Text style={styles.optionText}>{props.action}</Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
     )
 }
 
