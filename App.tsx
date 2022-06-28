@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { ThemeProvider } from "@react-navigation/native";
+import React from "react";
+import { View,Button, ScrollView, StyleSheet } from "react-native";
+import  SafeAreaView  from "react-native-safe-area-context";
+import AgregarCursoComponent from "./src/UX/agregarCursoComponent.js";
 
+//importo la pantalla que se va a mostrar
+//import  mainScreenContainer  from "./src/UX/mainScreenContainer.js";}
+
+export default function App(){
+return(
+<View style={styles.container}>
+    <AgregarCursoComponent/>
+    
+  </View>
+  );};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+  }
+})
