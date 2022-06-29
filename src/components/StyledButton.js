@@ -48,11 +48,20 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.red,
     padding: 10,
     borderRadius: 50,
+  },
+  nonBackgroundButton: {
+    height: 30,
+    width: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: 'transparent',
   }
 });
 
 export default function StyledButton(props) {
 
+  //Creo un array de estilos que contiene 
+  //Un estilo dependiendo el prop que se le pase
   const buttonStyles = [
     styles.buttonStandard,
     props.type == "transparent" && styles.transparentButton,
@@ -60,8 +69,11 @@ export default function StyledButton(props) {
     props.type == "thick" && styles.thickButton,
     props.type == 'square' && styles.squareButton,
     props.type == 'red' && styles.redButton,
+    props.type == 'nonBackground' && styles.nonBackgroundButton,
   ];
 
+  //Si existe el prop icon, renderizo un boton con el icono en 
+  //Vez de un texto
   if (props.icon) {
     return (
       <TouchableOpacity style={buttonStyles} onPress={props.onPress}>
@@ -70,6 +82,7 @@ export default function StyledButton(props) {
     )
   }
 
+  //Si el if da falso, renderizo el boton pero con texto adentro en vez de icono
   return (
     <TouchableOpacity onPress={props.onPress} style={[buttonStyles, { alignItems: "center" }]}>
       <Text style={{ color: theme.colors.white, fontSize: theme.fontSizes.buttonTextSize }}>{props.text}</Text>

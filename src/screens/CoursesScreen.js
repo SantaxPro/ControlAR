@@ -11,9 +11,9 @@ import StyledButton from "../components/StyledButton";
 export default function CoursesScreen({ navigation, route }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-
+  console.log(route)
   const handleTouch = () => {
-    setModalVisible(true);
+    setModalVisible(!modalVisible);
   }
 
   const editCourse = () => {
@@ -45,8 +45,8 @@ export default function CoursesScreen({ navigation, route }) {
         <View style={styles.modal}>
 
           <View style={styles.titleContainer}>
-            <Text style={{fontSize: theme.fontSizes.titleTextSize, fontWeight: theme.fontWeight.medium}}>Mas opciones.</Text>
-            <StyledButton type="square" onPress={() => {console.log("working")}} icon={<Text>Hola</Text>} />
+            <Text style={{fontSize: theme.fontSizes.titleTextSize, fontWeight: theme.fontWeight.medium}}>Detalles</Text>
+            <StyledButton type="nonBackground" onPress={handleTouch} icon={<MaterialIcons name="close" size={24} color={theme.colors.primaryGrey} />} />
           </View>
 
           <View style={styles.optionContainer}>

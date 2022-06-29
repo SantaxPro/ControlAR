@@ -1,4 +1,4 @@
-import react from 'react'
+import react, {useState} from 'react'
 import {View, Text, StyleSheet, StatusBar, FlatList} from 'react-native'
 import {courses} from '../data/testdata'
 import StudentCard from '../components/StudentCard.js';
@@ -9,21 +9,25 @@ import theme from '../UI/theme';
 const Tab = createBottomTabNavigator();
 
 function StudentsScreen(props) {
-
+    const [students, setStudents] = useState(null);
     //Extraigo la id del curso que estoy mostrando en esta pantalla con el prop route
-        const { courseId } = props.route.params;
+    const { courseId } = props.route.params;
         //Ejecuto el metodo find al array de cursos que simula la informacion, para encontrar el curso que corresponde a la id que le paso
-        const course = courses.find(c => c.id === courseId); //que grande copilot
+    const course = courses.find(c => c.id === courseId); //que grande copilot
         //Guardo el array de estudiantes en una variable para recorrerlo y mostrar la informacion de cada estudiante
-        const arr = course.array_alumns;
-    
+    setStudents(course.array_alumns)
+
+    const handleDelete = (studentId) => {
+        console.log(studentId);
+    }
+
     return (
         <View style={styles.container}>
         <FlatList
             style={styles.list}
-            data={arr}
+            data={students}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
-            renderItem={({ item }) => <StudentCard {...item} />}
+            renderItem={({ item }) => <StudentCard {...item} handleDelete={handleDelete}/>}
         />
         </View>
     );
@@ -56,7 +60,9 @@ export default function SingleCourseScreen({route,  navigation }) {
                     }
                 }} 
                 />
+
                 <Tab.Screen name="Planilla" component={LogsScreen} />
+
             </Tab.Navigator>
         </View>
     )

@@ -26,7 +26,7 @@ export default function CourseCard(props) {
 
             <View style={[styles.horizontalcontainer, {justifyContent: 'flex-start'}]}>
 
-                <StyledButton onPress={()=>{props.nav.push('Asistencia', { courseId: props.id })}} text="Tomar asistencia" type="thick" id={props.id} />
+                <StyledButton onPress={()=>{props.nav.push('Asistencia', { array: props.array_alumns })}} text="Tomar asistencia" type="thick" id={props.id} />
                 <Text>   </Text>
                 <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', color: theme.colors.primaryGrey}}>
                     <Text style={{fontSize: 18}}> {props.array_alumns.length} </Text>
