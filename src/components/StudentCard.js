@@ -8,15 +8,15 @@ export default function StudentCard(props){
     const EditStudent = () => {
         Alert.alert('Editar estudiante')
     }
-    const handleDelete  = (e) => {
-        props.handleDelete(e)
+    const handleDelete  = () => {
+        props.handleDelete(props.student_id)
     }
     return(
         <View style={styles.container}>
             <Text style={styles.text}>{ props.student_name + " " +  props.student_lastname}</Text>
             <View style={{flexDirection: 'row'}}>
-                <StyledButton onPress={props.handleDelete(props.id)} type="red" text="Eliminar"/>
-                <TouchableOpacity onPress={handleDelete} style={{marginLeft: 15}}>
+                <StyledButton onPress={handleDelete} type="red" text="Eliminar" />
+                <TouchableOpacity onPress={()=>{console.log('editar')}} style={{marginLeft: 15}}>
                     <MaterialIcons name="edit" size={24} color={theme.colors.primaryGrey} />
                 </TouchableOpacity>
             </View>

@@ -11,7 +11,7 @@ import StyledButton from "../components/StyledButton";
 export default function CoursesScreen({ navigation, route }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(route)
+  
   const handleTouch = () => {
     setModalVisible(!modalVisible);
   }

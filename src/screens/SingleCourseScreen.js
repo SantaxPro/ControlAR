@@ -8,26 +8,32 @@ import theme from '../UI/theme';
 
 const Tab = createBottomTabNavigator();
 
+
 function StudentsScreen(props) {
-    const [students, setStudents] = useState(null);
+    const [idstudent, setIdstudent] = useState(0);
+    //const [students, setStudents] = useState(null);
     //Extraigo la id del curso que estoy mostrando en esta pantalla con el prop route
     const { courseId } = props.route.params;
         //Ejecuto el metodo find al array de cursos que simula la informacion, para encontrar el curso que corresponde a la id que le paso
     const course = courses.find(c => c.id === courseId); //que grande copilot
-        //Guardo el array de estudiantes en una variable para recorrerlo y mostrar la informacion de cada estudiante
-    setStudents(course.array_alumns)
+    //Guardo el array de estudiantes en una variable para recorrerlo y mostrar la informacion de cada estudiante
+    //setStudents(course)
+    const changeidstudent = (id) => {
+        setIdstudent(id);
+        console.log(idstudent);
+    }
 
-    const handleDelete = (studentId) => {
-        console.log(studentId);
+    const handler = (esto) => {
+        console.log(esto);
     }
 
     return (
         <View style={styles.container}>
         <FlatList
             style={styles.list}
-            data={students}
+            data={course.array_alumns}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
-            renderItem={({ item }) => <StudentCard {...item} handleDelete={handleDelete}/>}
+            renderItem={({ item }) => <StudentCard {...item} handleDelete={changeidstudent} />}
         />
         </View>
     );
@@ -42,7 +48,6 @@ function LogsScreen(props) {
 }
 
 export default function SingleCourseScreen({route,  navigation }) {
-    console.log(route)
     return (
         <View style={styles.container}>
             <Tab.Navigator screenOptions={({route})=>{
