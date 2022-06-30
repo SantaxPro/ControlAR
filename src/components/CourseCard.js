@@ -17,20 +17,18 @@ export default function CourseCard(props) {
             <View style={[styles.horizontalcontainer, {justifyContent: 'space-between'}]}>
 
                 <Text style={styles.title}>{props.name}</Text>
-                
-                <TouchableOpacity onPress={handleOptionsTouch}>
-                    <Image style={{marginTop: 5}} source={require('../../assets/dotsicon.png')}/>
-                </TouchableOpacity>
+                <StyledButton onPress={handleOptionsTouch} type="nonBackground" icon={<Image style={{marginTop: 5}} source={require('../../assets/dotsicon.png')}/>}/> 
 
             </View>
 
             <View style={[styles.horizontalcontainer, {justifyContent: 'flex-start'}]}>
-
-                <StyledButton onPress={()=>{props.nav.push('Asistencia', { array: props.array_alumns })}} text="Tomar asistencia" type="thick" id={props.id} />
+                
+                <StyledButton onPress={()=>{props.nav.push('Asistencia', { array: props.array_alumns })}} text="Tomar asistencia" type="thick"/>
                 <Text>   </Text>
                 <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', color: theme.colors.primaryGrey}}>
                     <Text style={{fontSize: 18}}> {props.array_alumns.length} </Text>
                     <MaterialIcons name="people" size={24} color={theme.colors.primaryGrey} />
+
                 </View>
 
             </View>

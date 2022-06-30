@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: 'transparent',
+  },
+  buttonText: {
+    color: theme.colors.white,
+    fontSize: theme.fontSizes.buttonTextSize
   }
 });
 
@@ -74,20 +78,25 @@ export default function StyledButton(props) {
 
   //Si existe el prop icon, renderizo un boton con el icono en 
   //Vez de un texto
-  if (props.icon) {
+  if (props.icon && props.text == null) {
     return (
       <TouchableOpacity style={buttonStyles} onPress={props.onPress}>
         {props.icon}
       </TouchableOpacity>
     )
+  } else if (props.text && props.icon == null) {
+    return (
+      <TouchableOpacity style={buttonStyles} onPress={props.onPress}>
+        <Text style={styles.buttonText}>{props.text}</Text>
+      </TouchableOpacity>
+    )
   }
-
-  //Si el if da falso, renderizo el boton pero con texto adentro en vez de icono
   return (
-    <TouchableOpacity onPress={props.onPress} style={[buttonStyles, { alignItems: "center" }]}>
-      <Text style={{ color: theme.colors.white, fontSize: theme.fontSizes.buttonTextSize }}>{props.text}</Text>
+    <TouchableOpacity style={[buttonStyles, {flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}]} onPress={props.onPress}>
+      {props.icon}
+      <Text style={styles.buttonText}>{props.text}</Text>
     </TouchableOpacity>
-  );
+  )
 }
 
 //Crear el styled text
