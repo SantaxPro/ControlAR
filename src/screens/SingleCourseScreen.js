@@ -1,10 +1,11 @@
 import react, {useState} from 'react'
 import {View, Text, StyleSheet, StatusBar, FlatList} from 'react-native'
 import {courses} from '../data/testdata'
-import StudentCard from '../components/StudentCard.js';
+//import StudentCard from '../components/StudentCard.js';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import theme from '../UI/theme';
+import { StudentCard }from '../components/Card';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,8 @@ function StudentsScreen(props) {
             style={styles.list}
             data={course.array_alumns}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
-            renderItem={({ item }) => <StudentCard {...item} handleDelete={changeidstudent} />}
+            renderItem={({ item }) => <StudentCard {...item} handleDelete={changeidstudent} variant={1}/> 
+         }
         />
         </View>
     );
