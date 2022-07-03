@@ -30,7 +30,6 @@ export default function CourseCard(props) {
                     <MaterialIcons name="people" size={24} color={theme.colors.primaryGrey} />
 
                 </View>
-
             </View>
         </View>
     </TouchableOpacity>

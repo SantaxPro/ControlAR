@@ -27,10 +27,11 @@ const styles = StyleSheet.create({
   },
   thickButton: {
     width: 100,
-    height: 30,
+    height: 50,
     borderRadius: 50,
     padding: 8,
     justifyContent: "center",
+    alignItems: "center",
     backgroundColor: theme.colors.primaryGrey,
   },
   squareButton: {

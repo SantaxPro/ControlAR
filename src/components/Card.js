@@ -109,7 +109,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginVertical: 5,
-        elevation: 2,
+        marginHorizontal: 5,
+        borderRadius: 15,
+        borderWidth: 1,
     },
     text: {
         fontSize: theme.fontSizes.titleTextSize,
@@ -118,13 +120,14 @@ const styles = StyleSheet.create({
     },
     container: {
         flexGrow: 1,
-        height: 95,
+        height: 150,
         backgroundColor: theme.colors.lightGrey,
         paddingHorizontal: 30,
         justifyContent: 'center',
-        elevation: 3,
+        borderWidth: 1,
         borderRadius: 10,
         flexDirection: 'column',
+        marginTop: 10,
     },
     horizontalcontainer: {
         flexDirection: 'row',
