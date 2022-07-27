@@ -1,7 +1,8 @@
 import React from "react";
-import  {View}  from "react-native";
+import  {View, Text}  from "react-native";
 import BotonEstandarCurso from "./botonEstandarCurso";
 import { Ionicons } from '@expo/vector-icons'; 
+const textoSinCursos = "No tienes ningun curso creado. Agrega uno para comenzar",
 
 
 export default function AgregarCursoComponent (props) {
@@ -26,7 +27,11 @@ textAlign:'center'}}>
 
     }}/>
     <BotonEstandarCurso type='square'/>
-  </View>
+  <View>
+      <Text>
+      "No tienes ningun curso creado. Agrega uno para comenzar"
+      <Text/>
+      </View>
   );
 }
 //icon={()=>{return(<Ionicons name="md-search-sharp" size={24} color="black" />)}}
