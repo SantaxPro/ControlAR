@@ -10,6 +10,9 @@ const SignInScreen = () => {
     const onSignInPressed = () => {
         console.warn('Sign In');
     }
+    const onForgotPasswordPressed = () => {
+        console.warn('onForgotPasswordPressed');
+    }
 return(
     <View style={styles.root}>
         <Image 
@@ -26,10 +29,16 @@ return(
         placeholder="Password" 
         value={password} 
         setValue={setPassword} 
-        secureTextEntry={true}
+        secureTextEntry
         />
-        <CustomButton text="Sign In" onPress={onSignInPressed} />
-    </View>
+        <CustomButton text="Sign in" onPress={onSignInPressed}/>
+        <CustomButton 
+        text="Forgot password?" 
+        onPress={onForgotPasswordPressed} 
+        type="TERTIARY"
+        />
+        
+  </View>
 );
 };
 const styles = StyleSheet.create(
