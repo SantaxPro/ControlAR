@@ -7,9 +7,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import theme from '../UI/theme';
 import { StudentCard }from '../components/Card';
 
+//Almaceno el navigator de tabs en una constante
 const Tab = createBottomTabNavigator();
 
-
+//Para mostrar la subpantalla que muestra los estudiantes, utilizo este componente
 function StudentsScreen(props) {
     const [idstudent, setIdstudent] = useState(0);
     //const [students, setStudents] = useState(null);
@@ -41,6 +42,7 @@ function StudentsScreen(props) {
     );
 }
 
+//Componente que muestra la subpantalla de planillas
 function LogsScreen(props) {
     return(
         <View style={styles.container}>
@@ -48,7 +50,8 @@ function LogsScreen(props) {
         </View>
     )
 }
-
+//Componente que muestra la pantalla de curso en detalle,
+//utiliza los otros componentes
 export default function SingleCourseScreen({route,  navigation }) {
     return (
         <View style={styles.container}>

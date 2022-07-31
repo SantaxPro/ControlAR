@@ -4,6 +4,7 @@ import data from '../data/testdata'
 import { StudentCard } from "../components/Card";
 
 
+//Pantalla de asistencia, muestra a los alumnos de el curso en cuestion para tomar asistencia
 export default function AttendanceScreen({navigation, route}) {
 
     const [students, setStudents] = useState(route.params.array);

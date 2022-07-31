@@ -1,3 +1,5 @@
+
+//El componente theme almacena valores de estilos y los exporta para su uso en toda la aplicacion
 const theme = {
     colors: {
         screensBackground: '#F2F1F0',

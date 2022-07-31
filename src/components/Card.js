@@ -5,8 +5,12 @@ import theme from '../UI/theme';
 import StyledButton from './StyledButton';
 import { MaterialIcons } from '@expo/vector-icons'; 
 
+//Componente CourseCard que se exporta por defecto, realiza la funcion de 
+//Mostrar los cursos en la pantalla de cursos
 export default function CourseCard(props) {
 
+    //Esta funcion se ejecuta cuando se presiona el boton de opciones
+    //Y ejecuta la funcion que le paso por los props
     const handleOptionsTouch = (e) => {
         props.onOptionsPress(e.target.value);
     }
@@ -38,22 +42,31 @@ export default function CourseCard(props) {
     )};
 
 
+//Este es el otro componente que exporta Card, 
+//Sirve para mostrar a los estudiantes en dos pantallas distintas
+//Para lograr eso utilizo un prop que define que componente va a retornar 
+//la funcion
 export function StudentCard(props) {
-    const [isVariant2, setVariant2] = useState(false);
-
     if (props.variant == 2) {
+        //Si el prop que la pasan es 2, devuelve la variante 2
         return <StudentCardVariant2 {...props}/>
     } else if(props.variant == 1) {
+        //Si es 1, devuelvo la variante 1
         return <StudentCardVariant1 {...props}/>
     }
-
+    //En caso de que no se especifique, ningun componente sera devuelto.
     return null}
+
+//Componente studentcard en su variante 1, 
+//Se utiliza para mostrar los estudiantes en la vista de curso 
 
 function StudentCardVariant1(props) {
 
+    //Al presionar el boton de editar, se ejecuta esta funcion.
     const EditStudent = () => {
         Alert.alert('Editar estudiante')
     }
+    //Lo mismo pero cuando se presiona el boton de eliminar
     const handleDelete  = () => {
         props.handleDelete(props.student_id)
     }
@@ -71,15 +84,18 @@ function StudentCardVariant1(props) {
     )
 }
 
+//Variante 2, se utiliza para mostrar a los estudiantes pero en la vista de asistencia
 function StudentCardVariant2(props) {
     
+    //funcion que devuelve la fecha, utilizado para enviar la nueva entry de asistencia
     const getDate = () => {
         var today = new Date();
         let date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-        console.log("date geted")
         return date
     }
 
+    //Cuando se define el estado del alumno, se ejecuta esta funcion
+    //Que arma el objeto que sera enviado a la bd
     const handleNewEntry = (id, name, lastname, state) => {
         var new_assist_entry = {
             student_fullname: name + " " + lastname,
@@ -87,6 +103,7 @@ function StudentCardVariant2(props) {
             student_attendance_state: state,
             student_attendance_date: getDate(),
         }
+        //Funcion importada desde globals
         newAttendanceEntry(new_assist_entry);
     }
 
@@ -101,6 +118,7 @@ function StudentCardVariant2(props) {
 }
 
 const styles = StyleSheet.create({
+    
     containerV1: {
         flexGrow: 1,
         padding: 10,

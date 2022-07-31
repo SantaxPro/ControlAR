@@ -3,6 +3,9 @@ import theme from "../UI/theme";
 import {useState} from "react";
 import  newAttendanceEntry  from "../globals/global";
 
+/*
+COMPONENTE OBSOLETO
+*/
 export default function StudentAssistCard(props) {
     
     const getDate = () => {

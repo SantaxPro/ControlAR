@@ -3,6 +3,11 @@ import theme from '../UI/theme'
 import StyledButton from './StyledButton'
 import { MaterialIcons } from '@expo/vector-icons'; 
 
+/*
+COMPONENTE INUTILIZADO
+FAVOR DE NO USAR
+UTILIZE EN CAMBIO EL COMPONENTE CARD.JS
+*/
 
 export default function StudentCard(props){
     const EditStudent = () => {

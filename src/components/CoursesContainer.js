@@ -4,6 +4,8 @@ import theme from "../UI/theme";
 import { courses } from "../data/testdata";
 import CourseCard from "./CourseCard";
 
+//El componente de courses container funciona como un contenedor para la lista de cursos
+//Utiliza un flatlist para renderizar toda la informacion
 export default function CoursesContainer( { navigation }) {
   return (
     <View style={styles.container}>

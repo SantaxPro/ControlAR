@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, StatusBar, Image } from "react-native";
 import theme from "../UI/theme";
 import Constants from "expo-constants";
 
+/*Componente obsoleto */
+
 export default function TopBar(props) {
   return (
     <View style={styles.bar}>

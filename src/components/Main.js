@@ -12,8 +12,13 @@ import theme from "../UI/theme";
 import ConfigurationScreen from '../screens/ConfigurationScreen';
 import AttendanceScreen from "../screens/AttendanceScreen";
 
+//Constante que almacena el navigator de tipo stack
+//Libreria: React Navigation
 const stack = createNativeStackNavigator();
 
+
+//El componente main actua como punto de entrada de la app
+//Reemplazando a app.js
 export default function Main() {
 
     return (

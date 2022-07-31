@@ -8,19 +8,23 @@ import ModalHorizontalOption from "../components/modalHorizontalOption";
 import StyledButton from "../components/StyledButton";
 import CourseCard from '../components/Card';
 
-
+//Pantalla que muestra los cursos principal
 export default function CoursesScreen({ navigation, route }) {
 
+  //Manejo la visibilidad de el modal flotante con un state
   const [modalVisible, setModalVisible] = useState(false);
   
+  //Al presionar en opciones, esto activa el modal
   const handleTouch = () => {
     setModalVisible(!modalVisible);
   }
 
+  //Funcion para editar cursos
   const editCourse = () => {
     Alert.alert("Editar curso");
   }
 
+  //Funcion para eliminar cursos
   const deleteCourse = () => {
     Alert.alert("Eliminar curso")
   }

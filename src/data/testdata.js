@@ -1,3 +1,4 @@
+//Almaceno los datos de prueba de los cursos
 const courses = [
     {
         id: 1,
@@ -88,6 +89,7 @@ const courses = [
         }],
     },
 ]
+
 
 export default function assignNewEntry (newEntry){
     //Desestructuro el prop newEntry que es un objeto

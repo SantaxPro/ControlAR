@@ -2,6 +2,7 @@ import react  from "react";
 import { View, Button, Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../UI/theme";
 
+//Estilos de los botones de la app
 const styles = StyleSheet.create({
   buttonStandard: {
     width: 125,
@@ -63,6 +64,8 @@ const styles = StyleSheet.create({
   }
 });
 
+//El componente styledbutton posee la capacidad de renderizar todos los botones  de la app
+//En base a un prop que se le pasa
 export default function StyledButton(props) {
 
   //Creo un array de estilos que contiene 
