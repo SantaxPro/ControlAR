@@ -3,7 +3,7 @@ import {View, Alert, Button, StyleSheet, TouchableOpacity, Text} from "react-nat
 import { Ionicons } from '@expo/vector-icons';
 //import {Ionicons} from '@expo/vector-icons/Ionicons';
 
-
+//creo estilos para los tipos de botones segun props
 const styles = StyleSheet.create({
     square: {
       left:20,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
       borderRadius: 20
     }
 })
-
+//creo la funcion de los botones con lo que tengan dentro
 const BotonEstandarCurso = (props) => {
   const estilos = [
     styles.square,
