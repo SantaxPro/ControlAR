@@ -9,7 +9,6 @@ export default function AttendanceScreen({navigation, route}) {
 
     const [students, setStudents] = useState(route.params.array);
     const [attendance, setAttendance] = useState([]);
-    console.log(route.params.array);
     return(
         <View>
             <FlatList 

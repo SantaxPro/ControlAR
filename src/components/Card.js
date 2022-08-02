@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Alert, TouchableOpacity, Image, Button} from "re
 import  newAttendanceEntry  from "../globals/global";
 import theme from '../UI/theme';
 import StyledButton from './StyledButton';
+import StudentCardVariant2 from "./StudentCardVariant2";
 import { MaterialIcons } from '@expo/vector-icons'; 
 
 //Componente CourseCard que se exporta por defecto, realiza la funcion de 
@@ -76,43 +77,10 @@ function StudentCardVariant1(props) {
             <Text style={styles.text}>{ props.student_name + " " +  props.student_lastname}</Text>
             <View style={{flexDirection: 'row'}}>
                 <StyledButton onPress={handleDelete} type="red" text="Eliminar" />
-                <TouchableOpacity onPress={()=>{console.log('editar')}} style={{marginLeft: 15}}>
+                <TouchableOpacity onPress={()=>{EditStudent}} style={{marginLeft: 15}}>
                     <MaterialIcons name="edit" size={24} color={theme.colors.primaryGrey} />
                 </TouchableOpacity>
             </View>
-        </View>
-    )
-}
-
-//Variante 2, se utiliza para mostrar a los estudiantes pero en la vista de asistencia
-function StudentCardVariant2(props) {
-    
-    //funcion que devuelve la fecha, utilizado para enviar la nueva entry de asistencia
-    const getDate = () => {
-        var today = new Date();
-        let date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-        return date
-    }
-
-    //Cuando se define el estado del alumno, se ejecuta esta funcion
-    //Que arma el objeto que sera enviado a la bd
-    const handleNewEntry = (id, name, lastname, state) => {
-        var new_assist_entry = {
-            student_fullname: name + " " + lastname,
-            student_id: id,
-            student_attendance_state: state,
-            student_attendance_date: getDate(),
-        }
-        //Funcion importada desde globals
-        newAttendanceEntry(new_assist_entry);
-    }
-
-    return(
-        <View key={props.student_id}>
-                <Text>Nombre alumno: {props.student_name}</Text>
-                <Text>Apellido alumno: {props.student_lastname}</Text>
-                <Button title="Asistió" onPress={()=>{handleNewEntry(props.student_id, props.student_name, props.student_lastname, "presente")}}/>
-                <Button title="No Asistió" onPress={()=>{handleNewEntry(props.student_id, props.student_name, props.student_lastname, "ausente")}}/>
         </View>
     )
 }

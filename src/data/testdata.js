@@ -103,7 +103,6 @@ export default function assignNewEntry (newEntry){
             if (courses[i].array_alumns[j].student_id == targetStudentId) {
                 courses[i].array_alumns[j].attendance_entrys.push(newEntry);
                 console.log(courses[i].array_alumns[j].attendance_entrys);
-                
             }
         }
     }

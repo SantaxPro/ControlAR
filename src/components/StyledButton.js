@@ -12,10 +12,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   transparentButton: {
-    width: 125,
+    minWidth: 125,
     height: 35,
     borderRadius: 50,
     justifyContent: "center",
+    alignContent: "center",
     borderColor: theme.colors.secondaryGrey,
     borderWidth: 1,
   },
@@ -61,6 +62,15 @@ const styles = StyleSheet.create({
   buttonText: {
     color: theme.colors.white,
     fontSize: theme.fontSizes.buttonTextSize
+  }, 
+  attendanceButton: {
+    flex: 1,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: 'center',
+    borderColor: theme.colors.secondaryGrey,
+    borderWidth: 1,
+    margin: 5,
   }
 });
 
@@ -78,6 +88,7 @@ export default function StyledButton(props) {
     props.type == 'square' && styles.squareButton,
     props.type == 'red' && styles.redButton,
     props.type == 'nonBackground' && styles.nonBackgroundButton,
+    props.type == 'attendance' && styles.attendanceButton,
   ];
 
   //Si existe el prop icon, renderizo un boton con el icono en 
