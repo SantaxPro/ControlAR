@@ -9,13 +9,13 @@ export default function AttendanceScreen({navigation, route}) {
 
     const [students, setStudents] = useState(route.params.array);
     const [attendance, setAttendance] = useState([]);
-
+    console.log(route.params.array);
     return(
         <View>
             <FlatList 
             data={students}
-            renderItem={({item}) => {return (<StudentCard {...item} variant={2}/>)}}
-            keyExtractor={(item) => {item.student_id.toString()}}
+            renderItem={(item) => {return (<StudentCard {...item} variant={2}/>)}}
+            keyExtractor={(item) => {return item.student_id}}
             />
         </View>
     )
