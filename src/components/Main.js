@@ -24,7 +24,13 @@ export default function Main() {
     return (
         <NavigationContainer>
 
-            <stack.Navigator initialRouteName="Mis cursos">
+            <stack.Navigator initialRouteName="Login">
+
+                <stack.Screen 
+                name="Login" 
+                component={LoginScreen}
+                options={{headerShown: false}}
+                />
 
                 <stack.Screen 
                 name="Mis cursos"
@@ -48,10 +54,6 @@ export default function Main() {
                  }
                 />
 
-                <stack.Screen 
-                name="Login" 
-                component={LoginScreen} 
-                />
 
                 <stack.Screen 
                 name="ConfigurationScreen" 
