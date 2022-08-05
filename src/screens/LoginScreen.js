@@ -6,6 +6,9 @@ import theme from "../UI/theme";
 
 //Pantalla de login
 export default function LoginScreen({navigation}) {
+    const handlePress = () => {
+        navigation.navigate("Mis cursos");
+    }
     return(
         <View style={styles.mainContainer}>
             <View style={styles.loginContainer} >
@@ -13,8 +16,8 @@ export default function LoginScreen({navigation}) {
                 ¡Bienvenido!
             </Text>
                 <Text style={{fontSize: theme.fontSizes.titleTextSize, fontWeight: theme.fontWeight.medium}}>Inicia sesion mediante una plataforma</Text>
-                <GoogleLoginAPIButton />
-                <FacebookLoginAPIButton />
+                <GoogleLoginAPIButton onPress={handlePress} />
+                <FacebookLoginAPIButton onPress={handlePress}/>
             </View>
         </View>
     )

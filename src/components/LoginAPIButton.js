@@ -2,18 +2,20 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons'; 
 
+
 //Este componente exporta el boton de login con la API de Google
-export default function GoogleLoginAPIButton() {
+export default function GoogleLoginAPIButton(props) {
+    
     return(
-        <TouchableOpacity style={styles.googleContainer}>
+        <TouchableOpacity onPress={props.onPress} style={styles.googleContainer}>
             <AntDesign name="google" size={24} color="white" />
         </TouchableOpacity>
     )
 }
 
-export function FacebookLoginAPIButton() {
+export function FacebookLoginAPIButton(props) {
     return(
-        <TouchableOpacity style={styles.facebookContainer}>
+        <TouchableOpacity onPress={props.onPress} style={styles.facebookContainer}>
             <Entypo name="facebook" size={24} color="white" />
         </TouchableOpacity>
     )
