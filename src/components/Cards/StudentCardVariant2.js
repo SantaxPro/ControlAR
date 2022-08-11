@@ -1,6 +1,5 @@
-import  newAttendanceEntry  from "../globals/global";
 import {View, Text, Button, StyleSheet, Alert} from 'react-native'
-import StyledButton from "./StyledButton";
+import StyledButton from "../StyledButton";
 
 //Variante 2, se utiliza para mostrar a los estudiantes pero en la vista de asistencia
 export default function StudentCardVariant2(props) {

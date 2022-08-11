@@ -5,7 +5,7 @@ import {courses} from '../data/testdata'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import theme from '../UI/theme';
-import { StudentCard }from '../components/Card';
+import { StudentCard }from '../components/Cards/Card';
 
 //Almaceno el navigator de tabs en una constante
 const Tab = createBottomTabNavigator();

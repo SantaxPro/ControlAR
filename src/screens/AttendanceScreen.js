@@ -1,7 +1,7 @@
 import {View, Text, StyleSheet, FlatList, Button} from "react-native";
 import {useState} from "react";
 import data from '../data/testdata'
-import { StudentCard } from "../components/Card";
+import { StudentCard } from "../components/Cards/Card";
 
 
 //Pantalla de asistencia, muestra a los alumnos de el curso en cuestion para tomar asistencia

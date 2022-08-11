@@ -4,8 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 
 
 //Este componente exporta el boton de login con la API de Google
-export default function GoogleLoginAPIButton(props) {
-    
+export function GoogleLoginAPIButton(props) {
     return(
         <TouchableOpacity onPress={props.onPress} style={styles.googleContainer}>
             <AntDesign name="google" size={24} color="white" />

@@ -1,7 +1,6 @@
 import react from "react";
 import { View, Text, StyleSheet, StatusBar, FlatList } from "react-native";
-import GoogleLoginAPIButton from "../components/LoginAPIButton";
-import { FacebookLoginAPIButton } from "../components/LoginAPIButton";
+import { FacebookLoginAPIButton, GoogleLoginAPIButton } from "../components/Buttons/LoginAPIButton";
 import theme from "../UI/theme";
 
 //Pantalla de login

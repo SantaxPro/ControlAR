@@ -2,11 +2,10 @@ import react , { useState }from "react";
 import { View, Text, StyleSheet, FlatList, Modal, Button, TouchableOpacity, Alert } from "react-native";
 import theme from "../UI/theme";
 import { courses } from "../data/testdata";
-//import CourseCard from "../components/CourseCard";
+import CourseCard from "../components/Cards/CourseCard";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import ModalHorizontalOption from "../components/modalHorizontalOption";
 import StyledButton from "../components/StyledButton";
-import CourseCard from '../components/Card';
 
 //Pantalla que muestra los cursos principal
 export default function CoursesScreen({ navigation, route }) {

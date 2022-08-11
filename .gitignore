@@ -1,5 +1,3 @@
-./.expo-shared/
-./.vscode/
 
 node_modules/
 .expo/
@@ -12,5 +10,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+.expo-shared/
+.vscode/
 # macOS
 .DS_Store
