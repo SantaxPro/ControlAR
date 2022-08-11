@@ -1,6 +1,6 @@
 import {View, Text, Alert, TouchableOpacity, StyleSheet} from "react-native";
 import theme from "../../UI/theme";
-import StyledButton from "../StyledButton";
+import StyledButton from "../Buttons/StyledButton";
 import {MaterialIcons} from '@expo/vector-icons';
 
 //Componente studentcard en su variante 1, 

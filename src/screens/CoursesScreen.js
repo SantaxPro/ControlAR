@@ -5,7 +5,7 @@ import { courses } from "../data/testdata";
 import CourseCard from "../components/Cards/CourseCard";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import ModalHorizontalOption from "../components/modalHorizontalOption";
-import StyledButton from "../components/StyledButton";
+import StyledButton from "../components/Buttons/StyledButton";
 
 //Pantalla que muestra los cursos principal
 export default function CoursesScreen({ navigation, route }) {

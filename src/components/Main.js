@@ -5,7 +5,7 @@ import {TouchableOpacity} from 'react-native'
 import CoursesScreen from "../screens/CoursesScreen";
 import SingleCourseScreen from '../screens/SingleCourseScreen';
 import LoginScreen from "../screens/LoginScreen";
-import StyledButton from "./StyledButton";
+import StyledButton from "./Buttons/StyledButton";
 import { FontAwesome } from '@expo/vector-icons'; 
 import theme from "../UI/theme";
 import ConfigurationScreen from '../screens/ConfigurationScreen';

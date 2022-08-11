@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import StyledButton from '../StyledButton';
+import StyledButton from '../Buttons/StyledButton';
 import theme from '../../UI/theme';
 import {MaterialIcons}  from '@expo/vector-icons';
 

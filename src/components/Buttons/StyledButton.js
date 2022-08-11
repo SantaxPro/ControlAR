@@ -1,6 +1,6 @@
 import react  from "react";
 import { View, Button, Text, StyleSheet, TouchableOpacity } from "react-native";
-import theme from "../UI/theme";
+import theme from "../../UI/theme";
 
 //Estilos de los botones de la app
 const styles = StyleSheet.create({
