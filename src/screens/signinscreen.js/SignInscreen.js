@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { View,Text,Image,StyleSheet,useWindowDimensions } from 'react-native';
+import { View,Text,Image,StyleSheet,useWindowDimensions,ScrollView } from 'react-native';
 import Logo from '../../../assets/i1.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -9,11 +9,21 @@ const SignInScreen = () => {
     const{height} = useWindowDimensions();
     const onSignInPressed = () => {
         console.warn('Sign In');
-    }
+    };
     const onForgotPasswordPressed = () => {
         console.warn('onForgotPasswordPressed');
-    }
+    };
+const onSignInFacebook = () => {
+    console.warn('onSignInFacebook');
+};
+const onSignInGoogle = () => {
+    console.warn('onSignInGoogle');
+};
+const onSignInUpPress = () => {
+    console.warn('onSignUpPress');
+};
 return(
+    <ScrollView showsVerticalScrollIndicator={false}>
     <View style={styles.root}>
         <Image 
         source={Logo} 
@@ -37,8 +47,26 @@ return(
         onPress={onForgotPasswordPressed} 
         type="TERTIARY"
         />
-        
+        <CustomButton 
+        text="Sign in with Facebook" 
+        onPress={onSignInFacebook}
+        bgColor="#E7EAF4"
+        fgColor="#4765A9"
+        />
+        <CustomButton 
+        text="Sign in with Google" 
+        onPress={onSignInGoogle}
+        bgColor="#FAE9EA"
+        fgColor="#DD4D44"
+        />
+        <CustomButton 
+        text="DO NOT HAVE AN ACCOUNT?CREATE ONE" 
+        onPress={onSignInUpPress} 
+        type="TERTIARY"
+        />
   </View>
+      
+  </ScrollView>
 );
 };
 const styles = StyleSheet.create(
