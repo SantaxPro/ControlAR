@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
       borderEndWidth: 1,
       backgroundColor: '#F5F5F4',
       borderColor:'#000000',
-      borderRadius: 20
+      borderRadius: 20,
     }
 })
 //creo la funcion de los botones con lo que tengan dentro, arrays con props y funciones
