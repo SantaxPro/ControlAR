@@ -1,21 +1,23 @@
 import React  from "react";
-import {View, Alert, Button, StyleSheet, TouchableOpacity, Text} from "react-native";
+import {View, Alert, Button, StyleSheet, TouchableOpacity, Text, Image} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-//import {Ionicons} from '@expo/vector-icons/Ionicons';
 
 //creo estilos para los tipos de botones segun props
 const styles = StyleSheet.create({
     square: {
-      left:20,
+      marginLeft:20,
+      marginTop: 10,
       width: 60,
       height: 60,
       backgroundColor: '#F5F5F4',
       borderRadius: 20,
       borderWidth: 1,
-      borderColor:'black'
+      borderColor:'black',
+      justifyContent:"center",
+      alignItems:"center",
+      textAlign:'center',
     },
     rectangle:{
-      left:160,
       width: 200,
       height: 60,
       borderEndWidth: 1,
@@ -24,16 +26,15 @@ const styles = StyleSheet.create({
       borderRadius: 20
     }
 })
-//creo la funcion de los botones con lo que tengan dentro
-const BotonEstandarCurso = (props) => {
+//creo la funcion de los botones con lo que tengan dentro, arrays con props y funciones
+const Buttons = (props) => {
   const estilos = [
     styles.square,
     props.type == 'rectangle' && styles.rectangle,
   ]
-//console.log(props.icon)
     return (
       <TouchableOpacity style={estilos}>
-<Ionicons name="md-search-sharp" size={24} color="black" />
-        <Text style={{justifyContent:'center', alignContent:'center', textAlign:'center',fontSize:25}}>Agregar Curso</Text>
+       {props.icon}
+        <Text style={{justifyContent:'center', alignContent:'center', textAlign:'center',}}>{props.text}</Text>
       </TouchableOpacity>
-    );};export default BotonEstandarCurso;
+    );};export default Buttons;
