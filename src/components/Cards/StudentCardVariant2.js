@@ -15,6 +15,8 @@ export default function StudentCardVariant2(props) {
     //Que arma el objeto que sera enviado a la bd
     const handleNewEntry = (id, name, lastname, state) => {
         Alert.alert("Envio de asistencia a la base de datos.")
+        props.handleNewEntry(id)
+        //props.handleNewEntry(props.student_id);
 
         /*var new_assist_entry = {
             student_fullname: name + " " + lastname,
@@ -28,14 +30,14 @@ export default function StudentCardVariant2(props) {
     }
 
     return(
-        <View style={styles.container} key={props.student_id}>
+        <View style={styles.container} key={props.item.student_id}>
                 <View style={{flexDirection: 'column',}}>
-                    <Text>Nombre alumno: {props.student_name}</Text>
-                    <Text>Apellido alumno: {props.student_lastname}</Text>
+                    <Text>Nombre alumno: {props.item.student_name}</Text>
+                    <Text>Apellido alumno: {props.item.student_lastname}</Text>
                 </View>
                 <View style={{flexDirection: 'row', flexGrow: 1}}>
-                    <StyledButton text="Asistió" type="attendance" onPress={()=>{handleNewEntry(props.student_id, props.student_name, props.student_lastname, "presente")}}/>
-                    <StyledButton text="No Asistió" type="attendance" onPress={()=>{handleNewEntry(props.student_id, props.student_name, props.student_lastname, "ausente")}}/>
+                    <StyledButton text="Asistió" type="attendance" onPress={()=>{handleNewEntry(props.item.student_id, props.item.student_name, props.item.student_lastname, "presente")}}/>
+                    <StyledButton text="No Asistió" type="attendance" onPress={()=>{handleNewEntry(props.item.student_id, props.item.student_name, props.item.student_lastname, "ausente")}}/>
                 </View>
         </View>
     )

@@ -10,7 +10,7 @@ import theme from "../UI/theme";
 import LoginScreen from "../screens/LoginScreen";
 import CoursesScreen from "../screens/CoursesScreen";
 import SingleCourseScreen from "../screens/SingleCourseScreen";
-import ConfigurationScreen from "../screens/ConfigurationScreen";
+import  ProfileScreen from "../screens/ProfileScreen";
 import AttendanceScreen from "../screens/AttendanceScreen";
 
 import Context from "./context";
@@ -46,15 +46,15 @@ export default function Main() {
                   headerRight: () => (
                     <TouchableOpacity
                       onPress={() => {
-                        navigation.navigate("ConfigurationScreen");
+                        navigation.navigate("Perfil");
                       }}
                     >
                       <FontAwesome
-                        name="gear"
+                        name="user"
                         size={24}
                         color={theme.colors.primaryGrey}
                       />
-                      
+
                     </TouchableOpacity>
                   ),
                 })}
@@ -69,8 +69,8 @@ export default function Main() {
               />
 
               <stack.Screen
-                name="ConfigurationScreen"
-                component={ConfigurationScreen}
+                name="Perfil"
+                component={ProfileScreen}
               />
 
               <stack.Screen name="Asistencia" component={AttendanceScreen} />

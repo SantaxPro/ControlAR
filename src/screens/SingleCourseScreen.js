@@ -12,21 +12,20 @@ const Tab = createBottomTabNavigator();
 
 //Para mostrar la subpantalla que muestra los estudiantes, utilizo este componente
 function StudentsScreen(props) {
-    const [idstudent, setIdstudent] = useState(0);
-    //const [students, setStudents] = useState(null);
     //Extraigo la id del curso que estoy mostrando en esta pantalla con el prop route
     const { courseId } = props.route.params;
-        //Ejecuto el metodo find al array de cursos que simula la informacion, para encontrar el curso que corresponde a la id que le paso
+    //Ejecuto el metodo find al array de cursos que simula la informacion, para encontrar el curso que corresponde a la id que le paso
     const course = courses.find(c => c.id === courseId); //que grande copilot
-    //Guardo el array de estudiantes en una variable para recorrerlo y mostrar la informacion de cada estudiante
-    //setStudents(course)
-    const changeidstudent = (id) => {
-        setIdstudent(id);
-        console.log(idstudent);
-    }
 
-    const handler = (esto) => {
-        console.log(esto);
+    
+    const changeidstudent = (id) => {
+        let new_arr = students.map((item)=>{
+            if (item.student_id === id){
+                return {...item, active: false}
+            }
+            return item
+        })
+        setStudents(new_arr)
     }
 
     return (

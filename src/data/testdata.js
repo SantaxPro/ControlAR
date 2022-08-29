@@ -6,41 +6,41 @@ const courses = [
         number_alumns: 25,
         array_alumns:[{
             student_id: 1,
-            student_name: '5555Daniel',
+            student_name: 'Daniel',
             student_lastname: 'Chavez',
-            attendance_entrys: []
+            attendance_entrys: [],
+            active: true,
+
+
         },
         {
             student_id: 2,
-            student_name: '555David',
+            student_name: 'David',
             student_lastname: 'Cappelluti',
-            attendance_entrys: [
-                
-            ]
+            attendance_entrys: [],
+            active: true,
         },
         {
             student_id: 3,
-            student_name: ' 555Rayen',
+            student_name: ' Rayen',
             student_lastname: 'Millahual',
-            attendance_entrys: [
-                
-            ]
+            attendance_entrys: [],
+            active: true,
         },
         {
             student_id: 4,
-            student_name: '555Alexander',
+            student_name: 'Alexander',
             student_lastname: ' Gonzalez',
-            attendance_entrys: [
-                
-            ]
+            attendance_entrys: [],
+            active: true,
         },
         {
             student_id: 5,
-            student_name: '555juanito',
+            student_name: 'juanito',
             student_lastname: 'Perez',
-            attendance_entrys: [
-                
-            ]
+            attendance_entrys: [],
+            active: true,
+
         }],
     },
     {
@@ -49,43 +49,38 @@ const courses = [
         number_alumns: 25,
         array_alumns:[{
             student_id: 1,
-            student_name: '666Daniel',
+            student_name: 'Daniel',
             student_lastname: 'Chavez',
-            attendance_entrys: [
-
-            ]
+            attendance_entrys: [],
+            active: true,
         },
         {
             student_id: 2,
-            student_name: '666David',
+            student_name: 'David',
             student_lastname: 'Cappelluti',
-            attendance_entrys: [
-                
-            ]
+            attendance_entrys: [],
+            active: true,
         },
         {
             student_id: 3,
-            student_name: ' 666Rayen',
+            student_name: ' Rayen',
             student_lastname: 'Millahual',
-            attendance_entrys: [
-                
-            ]
+            attendance_entrys: [],
+            active: true,
         },
         {
             student_id: 4,
-            student_name: '666Alexander',
+            student_name: 'Alexander',
             student_lastname: ' Gonzalez',
-            attendance_entrys: [
-                
-            ]
+            attendance_entrys: [],
+            active: true,
         },
         {
             student_id: 5,
-            student_name: '666juanito',
+            student_name: 'juanito',
             student_lastname: 'Perez',
-            attendance_entrys: [
-                
-            ]
+            attendance_entrys: [],
+            active: true,
         }],
     },
 ]
@@ -113,7 +108,7 @@ const students = [
 
     {
         student_id: 1,
-        student_name: '5555Daniel',
+        student_name: 'Daniel',
         student_lastname: 'Chavez',
         attendance_entrys: []
     },
