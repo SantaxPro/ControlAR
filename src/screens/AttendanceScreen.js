@@ -8,7 +8,6 @@ import { StudentCard } from "../components/Cards/Card";
 export default function AttendanceScreen({navigation, route}) {
 
     const [students, setStudents] = useState(route.params.array);
-    const [attendance, setAttendance] = useState([]);
 
     const handleNewEntry = (id) => {
         let new_arr = students.map((item)=>{

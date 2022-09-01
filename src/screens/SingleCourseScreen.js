@@ -12,27 +12,28 @@ const Tab = createBottomTabNavigator();
 
 //Para mostrar la subpantalla que muestra los estudiantes, utilizo este componente
 function StudentsScreen(props) {
+    const [students, setStudents] = useState([])
     //Extraigo la id del curso que estoy mostrando en esta pantalla con el prop route
     const { courseId } = props.route.params;
     //Ejecuto el metodo find al array de cursos que simula la informacion, para encontrar el curso que corresponde a la id que le paso
     const course = courses.find(c => c.id === courseId); //que grande copilot
+    setStudents(course.array_alumns)
 
-    
     const changeidstudent = (id) => {
-        let new_arr = students.map((item)=>{
-            if (item.student_id === id){
-                return {...item, active: false}
-            }
-            return item
-        })
-        setStudents(new_arr)
+        // let new_arr = students.map((item)=>{
+        //     if (item.student_id === id){
+        //         return {...item, active: false}
+        //     }
+        //     return item
+        // })
+        // setStudents(new_arr)
     }
 
     return (
         <View style={styles.container}>
         <FlatList
             style={styles.list}
-            data={course.array_alumns}
+            data={students}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
             renderItem={({ item }) => <StudentCard {...item} handleDelete={changeidstudent} variant={1}/> 
          }
