@@ -17,8 +17,6 @@ function StudentsScreen(props) {
     const { courseId } = props.route.params;
     //Ejecuto el metodo find al array de cursos que simula la informacion, para encontrar el curso que corresponde a la id que le paso
     const course = courses.find(c => c.id === courseId); //que grande copilot
-    setStudents(course.array_alumns)
-
     const changeidstudent = (id) => {
         // let new_arr = students.map((item)=>{
         //     if (item.student_id === id){
@@ -33,7 +31,7 @@ function StudentsScreen(props) {
         <View style={styles.container}>
         <FlatList
             style={styles.list}
-            data={students}
+            data={course.array_alumns}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
             renderItem={({ item }) => <StudentCard {...item} handleDelete={changeidstudent} variant={1}/> 
          }
