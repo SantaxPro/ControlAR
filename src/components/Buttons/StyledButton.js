@@ -71,6 +71,16 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.secondaryGrey,
     borderWidth: 1,
     margin: 5,
+  },
+  plusButton: {
+    height: 30,
+    width: 30,
+    borderRadius: 7,
+    borderColor: 'hsla(0, 0%, 10%, 0.32)',
+    borderWidth: 2,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignContent: 'center',
   }
 });
 
@@ -89,6 +99,7 @@ export default function StyledButton(props) {
     props.type == 'red' && styles.redButton,
     props.type == 'nonBackground' && styles.nonBackgroundButton,
     props.type == 'attendance' && styles.attendanceButton,
+    props.type == 'plus' && styles.plusButton,
   ];
 
   //Si existe el prop icon, renderizo un boton con el icono en 

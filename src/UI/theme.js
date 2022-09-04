@@ -3,6 +3,7 @@
 const theme = {
     colors: {
         screensBackground: '#F2F1F0',
+        white: '#F9FCFF',
         primaryGrey: '#2A2C33',
         secondaryGrey: '#2D2E33',
         lightGrey: '#E9E9E9',
@@ -14,6 +15,7 @@ const theme = {
         titleTextSize: 18,
         subheading: 24,
         bodyTextSize: 14,
+        large: 16,
     },
     fontWeight: {
         normal: '400',

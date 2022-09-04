@@ -13,6 +13,8 @@ import SingleCourseScreen from "../screens/SingleCourseScreen";
 import  ProfileScreen from "../screens/ProfileScreen";
 import AttendanceScreen from "../screens/AttendanceScreen";
 
+import Header from "./Header";
+
 import Context from "./context";
 
 //Constante que almacena el navigator de tipo stack
@@ -27,7 +29,16 @@ export default function Main() {
   return (
     <Context.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <NavigationContainer>
-        <stack.Navigator initialRouteName="Login">
+        <stack.Navigator 
+        initialRouteName="Login"
+        screenOptions={{
+          header: (props) => {
+            return (
+              <Header/>
+            );
+          }
+        }}
+        >
 
           {isLoggedIn == false ? (
 
