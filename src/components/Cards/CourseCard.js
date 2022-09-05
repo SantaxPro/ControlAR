@@ -3,10 +3,8 @@ import React from 'react';
 import StyledButton from '../Buttons/StyledButton';
 import theme from '../../UI/theme';
 import { Entypo } from '@expo/vector-icons'; 
-import { HeaderContext} from '../context'
 
 export default function CourseCard(props) {
-    const Hcontext = React.useContext(HeaderContext);
     const navigateToCourse = () => {
         props.nav.push('Curso', 
         {screen: 'Estudiantes',
@@ -17,8 +15,6 @@ export default function CourseCard(props) {
             students: props.array_alumns.length,
             students_array: props.array_alumns,
         }});
-        Hcontext.setType("course")
-        console.log(Hcontext.type)
     }
     return (
     <TouchableOpacity onPress={navigateToCourse}>

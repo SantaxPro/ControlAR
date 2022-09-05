@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import theme from '../UI/theme';
 import { StudentCard }from '../components/Cards/Card';
+import { Ionicons } from '@expo/vector-icons'; 
 
 //Almaceno el navigator de tabs en una constante
 const Tab = createBottomTabNavigator();
@@ -32,6 +33,13 @@ function StudentsScreen(props) {
         <FlatList
             style={styles.list}
             data={course.array_alumns}
+            ListHeaderComponent={()=>(
+                <View style={styles.header}>
+                    <Text style={styles.text}>Alumnos</Text>
+                    <Ionicons name="person-add" size={18} color="black" />
+                </View>
+            )}
+            
             ItemSeparatorComponent={() => <View style={styles.separator} />}
             renderItem={({ item }) => <StudentCard {...item} handleDelete={changeidstudent} variant={1}/> 
          }
@@ -79,5 +87,17 @@ export default function SingleCourseScreen({route,  navigation }) {
 const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
+    },
+    list: {
+        flexGrow: 1,
+        backgroundColor: theme.colors.white,
+        marginVertical: 15,
+        marginHorizontal: 10,
+        padding: 20,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     }
 })

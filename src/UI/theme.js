@@ -18,8 +18,8 @@ const theme = {
         subheading: 24,
         bodyTextSize: 14,
         large: 18,
-        medium: 14,
-        small: 12,
+        medium: 16,
+        small: 14,
     },
     fontWeight: {
         normal: '400',

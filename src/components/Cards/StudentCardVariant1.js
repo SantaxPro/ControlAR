@@ -25,20 +25,11 @@ export default function StudentCardVariant1(props) {
 
 const styles = StyleSheet.create({
     containerV1: {
-        flexGrow: 1,
-        padding: 10,
-        backgroundColor: theme.colors.lightGrey,
-        flexDirection: "row",
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginVertical: 5,
-        marginHorizontal: 5,
-        borderRadius: 15,
-        borderWidth: 1,
     },
     text: {
-        fontSize: theme.fontSizes.titleTextSize,
-        fontWeight: theme.fontWeight.bold,
-        color: theme.colors.primaryGrey,
+        fontSize: theme.fontSizes.small,
+        fontWeight: '400',
+        color: theme.colors.black,
+        marginBottom: 10,
     },
 });

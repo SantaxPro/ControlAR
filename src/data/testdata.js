@@ -23,7 +23,7 @@ const courses = [
         },
         {
             student_id: 3,
-            student_name: ' Rayen',
+            student_name: 'Rayen',
             student_lastname: 'Millahual',
             attendance_entrys: [],
             active: true,
@@ -65,7 +65,7 @@ const courses = [
         },
         {
             student_id: 3,
-            student_name: ' Rayen',
+            student_name: 'Rayen',
             student_lastname: 'Millahual',
             attendance_entrys: [],
             active: true,

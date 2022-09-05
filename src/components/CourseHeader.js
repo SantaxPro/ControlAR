@@ -50,6 +50,11 @@ const styles = StyleSheet.create({
         elevation: 3,
         flexDirection: 'row'
     },
+    title: {
+        fontSize: theme.fontSizes.large,
+        color: theme.colors.black,
+        fontWeight: 'bold'
+    },
     horizontal: {
         flex: 1,
         flexDirection: 'column',
