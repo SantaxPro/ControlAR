@@ -17,6 +17,7 @@ import Header from "./Header";
 
 import Context from "./context";
 import CourseHeader from "./CourseHeader";
+import { useAuth0 } from "@auth0/auth0-react";
 
 //Constante que almacena el navigator de tipo stack
 //Libreria: React Navigation
@@ -25,17 +26,14 @@ const stack = createNativeStackNavigator();
 //El componente main actua como punto de entrada de la app
 //Reemplazando a app.js
 export default function Main() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const {user, isAuthenticated} = useAuth0();
 
   return (
-    <Context.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <NavigationContainer>
         <stack.Navigator 
         initialRouteName="Login"
-
         >
-
-          {isLoggedIn == false ? (
+          {isAuthenticated == false ? (
 
             <stack.Screen
               name="Login"
@@ -76,6 +74,5 @@ export default function Main() {
           )}
         </stack.Navigator>
       </NavigationContainer>
-    </Context.Provider>
   );
 }
