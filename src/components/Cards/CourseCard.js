@@ -1,61 +1,67 @@
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import React from 'react';
 import StyledButton from '../Buttons/StyledButton';
 import theme from '../../UI/theme';
-import {MaterialIcons}  from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons'; 
+import { HeaderContext} from '../context'
 
 export default function CourseCard(props) {
-
-    //Esta funcion se ejecuta cuando se presiona el boton de opciones
-    //Y ejecuta la funcion que le paso por los props
-    const handleOptionsTouch = (e) => {
-        props.onOptionsPress(e.target.value);
+    const Hcontext = React.useContext(HeaderContext);
+    const navigateToCourse = () => {
+        props.nav.push('Curso', 
+        {screen: 'Estudiantes',
+         params: { 
+            courseId: props.id,
+            name: props.name,
+            turno: props.turno,
+            students: props.array_alumns.length,
+            students_array: props.array_alumns,
+        }});
+        Hcontext.setType("course")
+        console.log(Hcontext.type)
     }
-
     return (
-    <TouchableOpacity onPress={(e)=>{props.nav.push('Curso', {screen: 'Estudiantes', params: { courseId: props.id, name: props.name }})}}>
+    <TouchableOpacity onPress={navigateToCourse}>
         <View key={props.id} style={styles.container}>
-
-            <View style={[styles.horizontalcontainer, {justifyContent: 'space-between'}]}>
-
-                <Text style={styles.title}>{props.name}</Text>
-                <StyledButton onPress={handleOptionsTouch} type="nonBackground" icon={<Image style={{marginTop: 5}} source={require('../../../assets/dotsicon.png')}/>}/> 
-
-            </View>
-
-            <View style={[styles.horizontalcontainer, {justifyContent: 'flex-start'}]}>
-                
-                <StyledButton onPress={()=>{props.nav.push('Asistencia', { array: props.array_alumns })}} text="Tomar asistencia" type="thick"/>
-                <Text>   </Text>
-                <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', color: theme.colors.primaryGrey}}>
-                    <Text style={{fontSize: 18}}> {props.array_alumns.length} </Text>
-                    <MaterialIcons name="people" size={24} color={theme.colors.primaryGrey} />
-
+                <StyledButton 
+                onPress={()=>{props.nav.push('Asistencia', { array: props.array_alumns })}} 
+                type="assist"
+                icon={<Entypo name="book" size={18} color={theme.colors.white} />}
+                />
+                <View style={styles.horizontal}>
+                    <Text style={styles.title}>{props.name}</Text>
+                    <Text style={styles.subtitle}>{props.turno}</Text>
                 </View>
-
-            </View>
         </View>
     </TouchableOpacity>
     )};
 
 const styles  = StyleSheet.create({
     container: {
-        flexGrow: 1,
-        height: 150,
-        backgroundColor: theme.colors.lightGrey,
+        width: 300,
+        height: 55,
+        backgroundColor: theme.colors.white,
         paddingHorizontal: 30,
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderRadius: 5,
-        flexDirection: 'column',
-        marginTop: 10,
-    },
-    horizontalcontainer: {
+
+        justifyContent: 'flex-start',
+        borderRadius: 11,
         flexDirection: 'row',
-        paddingTop: 5, //para que no se superponga el texto con la imagen
+        alignItems: 'center',
+        gap: 10,
+
+        shadowColor: '#C2C2C2',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.7,
+        shadowRadius: 5,
+        elevation: 10,
     },
     title: {
-        fontSize: theme.fontSizes.subheading,
-        marginBottom: 5,
-        color: theme.colors.secondaryGrey
-    }
+        fontSize: theme.fontSizes.medium,
+        color: theme.colors.black
+    },
+     subtitle: {
+        fontSize: theme.fontSizes.small,
+        color: 'hsla(0, 0%, 17%, 0.51)'
+     },
+
 })

@@ -16,6 +16,7 @@ import AttendanceScreen from "../screens/AttendanceScreen";
 import Header from "./Header";
 
 import Context from "./context";
+import CourseHeader from "./CourseHeader";
 
 //Constante que almacena el navigator de tipo stack
 //Libreria: React Navigation
@@ -31,13 +32,7 @@ export default function Main() {
       <NavigationContainer>
         <stack.Navigator 
         initialRouteName="Login"
-        screenOptions={{
-          header: (props) => {
-            return (
-              <Header/>
-            );
-          }
-        }}
+
         >
 
           {isLoggedIn == false ? (
@@ -45,7 +40,8 @@ export default function Main() {
             <stack.Screen
               name="Login"
               component={LoginScreen}
-              options={{ headerShown: false }}
+              options={{ headerShown: false , }}
+
             />
 
           ) : (
@@ -53,30 +49,21 @@ export default function Main() {
               <stack.Screen
                 name="Mis cursos"
                 component={CoursesScreen}
-                options={({ navigation }) => ({
-                  headerRight: () => (
-                    <TouchableOpacity
-                      onPress={() => {
-                        navigation.navigate("Perfil");
-                      }}
-                    >
-                      <FontAwesome
-                        name="user"
-                        size={24}
-                        color={theme.colors.primaryGrey}
-                      />
-
-                    </TouchableOpacity>
-                  ),
-                })}
+                options={{header: (props) => {
+                  return (
+                    <Header {...props}/>
+                  );
+                }}}
               />
 
               <stack.Screen
                 name="Curso"
                 component={SingleCourseScreen}
-                options={({ route }) => ({
-                  headerTitle: route.params.params.name,
-                })}
+                options={{header: (props) => {
+                  return (
+                    <CourseHeader {...props} />
+                  );
+                }}}
               />
 
               <stack.Screen

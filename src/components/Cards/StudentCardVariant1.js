@@ -19,12 +19,6 @@ export default function StudentCardVariant1(props) {
     return(
         <View style={styles.containerV1}>
             <Text style={styles.text}>{ props.student_name + " " +  props.student_lastname}</Text>
-            <View style={{flexDirection: 'row'}}>
-                <StyledButton onPress={handleDelete} type="red" text="Eliminar" />
-                <TouchableOpacity onPress={()=>{EditStudent}} style={{marginLeft: 15}}>
-                    <MaterialIcons name="edit" size={24} color={theme.colors.primaryGrey} />
-                </TouchableOpacity>
-            </View>
         </View>
     )
 }

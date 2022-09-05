@@ -3,6 +3,7 @@ const courses = [
     {
         id: 1,
         name: '6to 1ra',
+        turno: "Tarde",
         number_alumns: 25,
         array_alumns:[{
             student_id: 1,
@@ -46,6 +47,7 @@ const courses = [
     {
         id: 2,
         name: '6to 2da',
+        turno: "Tarde",
         number_alumns: 25,
         array_alumns:[{
             student_id: 1,

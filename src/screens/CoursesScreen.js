@@ -71,7 +71,10 @@ const styles = StyleSheet.create({
     container: {
       flexGrow: 1,
       paddingHorizontal: 3,
+      paddingVertical: 15,
       backgroundColor: theme.colors.screensBackground,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     list: {
       flexGrow: 1,

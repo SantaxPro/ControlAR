@@ -58,7 +58,7 @@ export default function SingleCourseScreen({route,  navigation }) {
                     tabBarIcon: ({color, size}) => {
                         return <MaterialIcons name="school" size={size} color={color} />
                     },
-                    headerTitleAlign: 'center',
+                    headerShown: false,
                 }
             }}>
                 <Tab.Screen name="Estudiantes" component={StudentsScreen}

@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: theme.colors.white,
-    fontSize: theme.fontSizes.buttonTextSize
   }, 
   attendanceButton: {
     flex: 1,
@@ -81,6 +80,38 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignContent: 'center',
+  },
+  assistButton: {
+    height: 30,
+    width: 30,
+    borderRadius: 7,
+    backgroundColor: theme.colors.blue,
+    borderColor: theme.colors.lightBlue,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backButton: {
+    height: 30,
+    width: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  textassistButton: {
+    color: theme.colors.white,
+    backgroundColor: theme.colors.blue,
+    borderColor: theme.colors.lightBlue,
+    fontSize: theme.fontSizes.large,
+    fontWeight: 'bold',
+
+    width: 175,
+    height: 35,
+    padding: 5,
+    borderRadius: 5,
+
+    justifyContent: 'flex-start',
+    gap: 10,
+    alignItems: 'center',
   }
 });
 
@@ -100,6 +131,9 @@ export default function StyledButton(props) {
     props.type == 'nonBackground' && styles.nonBackgroundButton,
     props.type == 'attendance' && styles.attendanceButton,
     props.type == 'plus' && styles.plusButton,
+    props.type == 'assist' && styles.assistButton,
+    props.type == 'back' && styles.backButton,
+    props.type == "textassist" && styles.textassistButton,
   ];
 
   //Si existe el prop icon, renderizo un boton con el icono en 

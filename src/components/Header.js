@@ -2,22 +2,25 @@ import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import theme from '../UI/theme'
 import StyledButton from './Buttons/StyledButton'
+import { HeaderContext } from './context'
+
 
 import { AntDesign } from '@expo/vector-icons'; 
 
-export default function Header() {
+export default function Header(props) {
   return (
-    <View style={styles.container}>
-        <View style={styles.horizontal}>
-            <Image style={styles.profile}/>
-            <Text style={styles.title}>Mis cursos</Text>
+        <View style={styles.container}>
+            <View style={styles.horizontal}>
+                <Image style={styles.profile}/>
+                <Text style={styles.title}>Mis cursos</Text>
+            </View>
+            <View style={styles.horizontal}>
+                <StyledButton type="plus" icon={<AntDesign name="plus" size={25} color="black" />} />
+            </View>
         </View>
-        <View style={styles.horizontal}>
-            <StyledButton type="plus" icon={<AntDesign name="plus" size={25} color="black" />} />
-        </View>
-    </View>
   )
 }
+
 
 const styles = StyleSheet.create({
     container: {

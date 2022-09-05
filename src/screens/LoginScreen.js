@@ -9,7 +9,6 @@ import theme from "../UI/theme";
 //Pantalla de login
 export default function LoginScreen(props) {
     const context = react.useContext(Context)
-    const navigation = useNavigation()
     const handlePress = () => {
         context.setIsLoggedIn(true);
         console.log(context.isLoggedIn);
