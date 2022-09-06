@@ -27,7 +27,7 @@ const stack = createNativeStackNavigator();
 //El componente main actua como punto de entrada de la app
 //Reemplazando a app.js
 export default function Main() {
-  const {user, isAuthenticated} = useAuth0();
+  const {user, isAuthenticated, logout} = useAuth0();
 
   return (
       <NavigationContainer>
@@ -68,10 +68,13 @@ export default function Main() {
               <stack.Screen
                 name="Perfil"
                 component={ProfileScreen}
+                initialParams={{ user: user , logout: logout}}
                 options={{header: (props) => {
                   return (
-                    <ProfileHeader {...props} />
-                  )}}}
+                    <ProfileHeader {...props}/>
+                  )}
+                }
+                }
               />
 
               <stack.Screen name="Asistencia" component={AttendanceScreen} />
