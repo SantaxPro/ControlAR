@@ -1,10 +1,11 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from '@expo/vector-icons'; 
 import theme from "../UI/theme";
 
 import LoginScreen from "../screens/LoginScreen";
@@ -13,11 +14,11 @@ import SingleCourseScreen from "../screens/SingleCourseScreen";
 import  ProfileScreen from "../screens/ProfileScreen";
 import AttendanceScreen from "../screens/AttendanceScreen";
 
-import Header from "./Header";
+import Header from "./Headers/Header";
 
-import Context from "./context";
-import CourseHeader from "./CourseHeader";
+import CourseHeader from "./Headers/CourseHeader";
 import { useAuth0 } from "@auth0/auth0-react";
+import ProfileHeader from "./Headers/ProfileHeader";
 
 //Constante que almacena el navigator de tipo stack
 //Libreria: React Navigation
@@ -49,7 +50,7 @@ export default function Main() {
                 component={CoursesScreen}
                 options={{header: (props) => {
                   return (
-                    <Header {...props}/>
+                    <Header {...props} user={user}/>
                   );
                 }}}
               />
@@ -67,6 +68,10 @@ export default function Main() {
               <stack.Screen
                 name="Perfil"
                 component={ProfileScreen}
+                options={{header: (props) => {
+                  return (
+                    <ProfileHeader {...props} />
+                  )}}}
               />
 
               <stack.Screen name="Asistencia" component={AttendanceScreen} />

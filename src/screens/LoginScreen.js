@@ -10,9 +10,6 @@ import theme from "../UI/theme";
 //Pantalla de login
 export default function LoginScreen(props) {
     const { loginWithRedirect } = useAuth0();
-    // react.useEffect(() => {
-    //     loginWithRedirect();
-    //  }, []);
 
     return (
         <>

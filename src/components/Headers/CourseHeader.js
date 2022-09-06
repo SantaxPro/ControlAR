@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
-import theme from '../UI/theme'
-import StyledButton from './Buttons/StyledButton'
+import theme from '../../UI/theme'
+import StyledButton from '../Buttons/StyledButton'
 import { AntDesign } from '@expo/vector-icons'; 
 export default function CourseHeader(props) {
   return (

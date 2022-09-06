@@ -1,17 +1,23 @@
 import React from 'react'
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
-import theme from '../UI/theme'
-import StyledButton from './Buttons/StyledButton'
-import { HeaderContext } from './context'
+import {View, Text, StyleSheet, TouchableOpacity, Image, Pressable} from 'react-native'
+import theme from '../../UI/theme'
+import StyledButton from '../Buttons/StyledButton'
+import { HeaderContext } from '../context'
 
 
 import { AntDesign } from '@expo/vector-icons'; 
 
 export default function Header(props) {
+    console.log(props.user)
+    const openProfile = () => {
+        props.navigation.navigate("Perfil")
+    }
   return (
         <View style={styles.container}>
             <View style={styles.horizontal}>
-                <Image style={styles.profile}/>
+                <Pressable onPress={openProfile}>
+                    <Image style={styles.profile} source={props.user.picture} />
+                </Pressable>
                 <Text style={styles.title}>Mis cursos</Text>
             </View>
             <View style={styles.horizontal}>
