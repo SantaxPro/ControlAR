@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore } from 'firebase/firestore'
-import { getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, setPersistence, onAuthStateChanged} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBAFyNfjzqVYwQV9FZhnyKqRXWTaZOSIHQ",
@@ -19,6 +19,8 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
+
+setPersistence(auth, "local");
 
 const signInWithGoogle = () => {
   

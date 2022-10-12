@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {AuthProvider, authContext} from "./context/authContext";
+import {authContext} from "./context/authContext";
 
 import Courses from "./views/Courses/Courses";
 import Students from "./views/Students/Students";
