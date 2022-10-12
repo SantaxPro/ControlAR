@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Button, Modal, FlatList, TextInput, Switch } from "react-native";
 import { useAuth } from "../../context/authContext";
-import useOperations from "../../context/operationsContext";
+import useOperations, { useCourses } from "../../context/operationsContext";
 import { auth, db } from "../../database/firebase";
 import { query, collection, where, onSnapshot} from "firebase/firestore";
 import { signOut } from "firebase/auth";
@@ -9,36 +9,28 @@ import { signOut } from "firebase/auth";
 function Courses() {
   const { user } = useAuth();
   const { createCourse, getCourses } = useOperations();
+  const {courses} = useCourses();
 
   const [modalVisible, setModalVisible] = React.useState(false);
-  const [courses, setCourses] = React.useState([]);
 
-  React.useEffect(() => {
-    if (user) {
-      // async function fetchData() {
-      //   const { courses, unsubscribe } = await getCourses(user.uid);
-      //   setCourses((prev)=>[...prev, ...courses]);
-      //   return unsubscribe;
-      // }
-      // const unsub = fetchData();
-      // return ()=>unsub();
+  // React.useEffect(() => {
+  //   if (user) {
+  //     const unsub = onSnapshot(
+  //       query(collection(db, "courses"), where("uid", "==", user.uid)),
+  //       (querySnapshot) => {
+  //         const courses = [];
+  //         querySnapshot.forEach((doc) => {
+  //           courses.push({ ...doc.data(), id: doc.id });
+  //         });
+  //         setCourses(courses);
+  //       }
+  //     );
+  //     return () => {
+  //       unsub();
+  //     };
 
-      const unsub = onSnapshot(
-        query(collection(db, "courses"), where("uid", "==", user.uid)),
-        (querySnapshot) => {
-          const courses = [];
-          querySnapshot.forEach((doc) => {
-            courses.push({ ...doc.data(), id: doc.id });
-          });
-          setCourses(courses);
-        }
-      );
-      return () => {
-        unsub();
-      };
-
-    }
-  }, [user]);
+  //   }
+  // }, [user]);
 
 
   const logOut = async () => {

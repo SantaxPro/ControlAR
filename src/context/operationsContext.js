@@ -1,55 +1,76 @@
 import React from "react";
-import {db} from "../database/firebase";
-import {collection, addDoc, query, where, getDocs, onSnapshot} from "firebase/firestore";
-
+import { db } from "../database/firebase";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
 
 const operationsContext = React.createContext();
 
 const useOperations = () => {
-    return React.useContext(operationsContext);
-}
+  return React.useContext(operationsContext);
+};
 
-const OperationsProvider = ({children}) => {
-    
-    const createCourse = async (uid, name, students, entrys, isFavorite) => {
-        const courseRef = collection(db, "courses");
-        const course = {
-            uid,
-            name,
-            students,
-            entrys,
-            isFavorite
-        }
-        await addDoc(courseRef, course);
-    }
+const useCourses = () => {
+  const [courses, setCourses] = React.useState([]);
 
-    const getCourses = async (uid) => {
-        //Get all the courses from the database in realtime using onSnapshot
-        const returnedData = {
-            courses: [],
-            unsubscribe: null,
-        }
-        const unsub = onSnapshot(query(collection(db, "courses"), where("uid", "==", uid)), (querySnapshot) => {
-            const courses = [];
-            querySnapshot.forEach((doc) => {
-                courses.push({...doc.data(), id: doc.id});
-            });
-            returnedData.courses = courses;
+  React.useEffect(() => {
+    const unsub = onSnapshot(
+      query(collection(db, "courses")),
+      (querySnapshot) => {
+        const courses = [];
+        querySnapshot.forEach((doc) => {
+          courses.push({ ...doc.data(), id: doc.id });
         });
-        returnedData.unsubscribe = unsub;
-        return returnedData;
-    }
+        setCourses(courses);
+      }
+    );
+    return () => {
+      unsub();
+    };
+  }, []);
+  return {courses};
+};
 
-    const value = {
-        createCourse,
-        getCourses,
-    }
-    return (
-        <operationsContext.Provider value={value}>
-            {children}
-        </operationsContext.Provider>
-    )
-}
+const OperationsProvider = ({ children }) => {
 
-export default useOperations
-export {OperationsProvider}
+  const createCourse = async (uid, name, students, entrys, isFavorite) => {
+    const courseRef = collection(db, "courses");
+    const course = {
+      uid,
+      name,
+      students,
+      entrys,
+      isFavorite,
+    };
+    await addDoc(courseRef, course);
+  };
+
+  const createStudent = async (uid, name, lastname, course) => {
+    const studentRef = collection(db, "students");
+    const student = {
+      uid,
+      name,
+      lastname,
+      course,
+    };
+    await addDoc(studentRef, student);
+  };
+
+  const value = {
+    createCourse,
+    createStudent,
+  };
+  return (
+    <operationsContext.Provider value={value}>
+      {children}
+    </operationsContext.Provider>
+  );
+};
+
+export default useOperations;
+export { OperationsProvider, useCourses };
