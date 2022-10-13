@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, Button, Modal, FlatList, TextInput, Switch } from "react-native";
 import { useAuth } from "../../context/authContext";
-import useOperations, { useCourses } from "../../context/operationsContext";
+import useCourses from "../../hooks/useCourses";
+import useOperations from "../../context/operationsContext";
 import { auth, db } from "../../database/firebase";
 import { query, collection, where, onSnapshot} from "firebase/firestore";
 import { signOut } from "firebase/auth";
@@ -9,7 +10,7 @@ import { signOut } from "firebase/auth";
 function Courses() {
   const { user } = useAuth();
   const { createCourse, getCourses } = useOperations();
-  const {courses} = useCourses();
+  const {courses} = useCourses(user);
 
   const [modalVisible, setModalVisible] = React.useState(false);
 

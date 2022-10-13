@@ -6,37 +6,21 @@ import {
   Button,
   Modal,
   TextInput,
-  Switch,
-  Pressable,
 } from "react-native";
 import { collection, where, query, onSnapshot } from "firebase/firestore";
 import { db } from "../../database/firebase";
 import { useAuth } from "../../context/authContext";
-import useOperations, { useCourses } from "../../context/operationsContext";
+import useOperations from "../../context/operationsContext";
+import useCourses from "../../hooks/useCourses";
 import SelectDropdown from "react-native-select-dropdown";
+import useStudents from "../../hooks/useStudents";
+
+
 function Students() {
-  const [students, setStudents] = React.useState([]);
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const { user } = useAuth();
-
-  React.useEffect(() => {
-    if (user) {
-      const unsub = onSnapshot(
-        query(collection(db, "students"), where("uid", "==", user.uid)),
-        (querySnapshot) => {
-          const students = [];
-          querySnapshot.forEach((doc) => {
-            students.push({ ...doc.data(), id: doc.id });
-          });
-          setStudents(students);
-        }
-      );
-      return () => {
-        unsub();
-      };
-    }
-  }, [user]);
+  const {students} = useStudents()
 
   const handlePress = () => {
     setModalVisible(true);

@@ -11,32 +11,14 @@ import {
 
 const operationsContext = React.createContext();
 
+//Exporto un custom hook para ahorrar codigo
 const useOperations = () => {
   return React.useContext(operationsContext);
 };
 
-const useCourses = () => {
-  const [courses, setCourses] = React.useState([]);
-
-  React.useEffect(() => {
-    const unsub = onSnapshot(
-      query(collection(db, "courses")),
-      (querySnapshot) => {
-        const courses = [];
-        querySnapshot.forEach((doc) => {
-          courses.push({ ...doc.data(), id: doc.id });
-        });
-        setCourses(courses);
-      }
-    );
-    return () => {
-      unsub();
-    };
-  }, []);
-  return {courses};
-};
 
 const OperationsProvider = ({ children }) => {
+  //Dsde el contexto le paso las operacion ABM a los componentes hijos
 
   const createCourse = async (uid, name, students, entrys, isFavorite) => {
     const courseRef = collection(db, "courses");
@@ -73,4 +55,4 @@ const OperationsProvider = ({ children }) => {
 };
 
 export default useOperations;
-export { OperationsProvider, useCourses };
+export { OperationsProvider};
