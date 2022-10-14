@@ -18,7 +18,6 @@ import useStudents from "../../hooks/useStudents";
 
 function Students() {
   const [modalVisible, setModalVisible] = React.useState(false);
-
   const { user } = useAuth();
   const {students} = useStudents()
 
@@ -63,11 +62,14 @@ const AddStudentModal = ({ visible, setVisible }) => {
 
   //CUSTOM HOOKS
   const { user } = useAuth();
-  const { courses } = useCourses();
-  const { createStudent } = useOperations();
+  const { courses } = useCourses(user);
+  const { createStudent, addStudentToCourse } = useOperations();
 
-  const handlePress = () => {
-    createStudent(user.uid, name, lastName, selectedCourse);
+  const handlePress = async () => {
+    // console.log(selectedCourse)
+    // console.log(courses)
+    const docRef = await createStudent(user.uid, name, lastName, selectedCourse);
+    addStudentToCourse(docRef.id, selectedCourse.id);
     setVisible();
   };
 

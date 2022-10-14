@@ -7,6 +7,10 @@ import {
   where,
   getDocs,
   onSnapshot,
+  updateDoc,
+  getDoc,
+  doc,
+  
 } from "firebase/firestore";
 
 const operationsContext = React.createContext();
@@ -40,12 +44,32 @@ const OperationsProvider = ({ children }) => {
       lastname,
       course,
     };
-    await addDoc(studentRef, student);
+    const docRef = await addDoc(studentRef, student);
+    return docRef;
   };
+
+  const addStudentToCourse = async (studentId, courseId) => {
+    // const courseRef = collection(db, "courses");
+    // const studentRef = collection(db, "students");
+    // console.log('id del curso', courseId);
+    const courseRef = doc(db, "courses", courseId);
+    const course = await getDoc(courseRef);
+    const student = await getDoc(doc(db, "students", studentId));
+    const studentObject = student.data()
+    delete studentObject.course
+    await updateDoc(courseRef, {
+      students: [...course.data().students, studentObject],
+    });
+    console.log('succesfully pushed student to course');
+
+
+  };
+
 
   const value = {
     createCourse,
     createStudent,
+    addStudentToCourse,
   };
   return (
     <operationsContext.Provider value={value}>
