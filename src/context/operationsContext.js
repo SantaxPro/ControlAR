@@ -10,7 +10,6 @@ import {
   updateDoc,
   getDoc,
   doc,
-  
 } from "firebase/firestore";
 
 const operationsContext = React.createContext();
@@ -19,7 +18,6 @@ const operationsContext = React.createContext();
 const useOperations = () => {
   return React.useContext(operationsContext);
 };
-
 
 const OperationsProvider = ({ children }) => {
   //Dsde el contexto le paso las operacion ABM a los componentes hijos
@@ -49,22 +47,21 @@ const OperationsProvider = ({ children }) => {
   };
 
   const addStudentToCourse = async (studentId, courseId) => {
-    // const courseRef = collection(db, "courses");
-    // const studentRef = collection(db, "students");
-    // console.log('id del curso', courseId);
     const courseRef = doc(db, "courses", courseId);
+
     const course = await getDoc(courseRef);
     const student = await getDoc(doc(db, "students", studentId));
-    const studentObject = student.data()
-    delete studentObject.course
+
+    const studentObject = student.data();
+
+    //Elimino el campo curso antes de enviarlo a la coleccion de cursos
+    //Para que no se duplique el campo
+    delete studentObject.course;
+
     await updateDoc(courseRef, {
       students: [...course.data().students, studentObject],
     });
-    console.log('succesfully pushed student to course');
-
-
   };
-
 
   const value = {
     createCourse,
@@ -79,4 +76,4 @@ const OperationsProvider = ({ children }) => {
 };
 
 export default useOperations;
-export { OperationsProvider};
+export { OperationsProvider };

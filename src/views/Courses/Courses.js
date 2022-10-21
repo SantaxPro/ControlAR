@@ -1,39 +1,26 @@
 import React from "react";
-import { View, Text, Button, Modal, FlatList, TextInput, Switch } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  Modal,
+  FlatList,
+  TextInput,
+  Switch,
+} from "react-native";
 import { useAuth } from "../../context/authContext";
 import useCourses from "../../hooks/useCourses";
 import useOperations from "../../context/operationsContext";
 import { auth, db } from "../../database/firebase";
-import { query, collection, where, onSnapshot} from "firebase/firestore";
+import { query, collection, where, onSnapshot } from "firebase/firestore";
 import { signOut } from "firebase/auth";
+import CourseCard from "../../components/CourseCard/CourseCard";
 
 function Courses() {
   const { user } = useAuth();
   const { createCourse, getCourses } = useOperations();
-  const {courses} = useCourses(user);
-
+  const { courses } = useCourses(user);
   const [modalVisible, setModalVisible] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   if (user) {
-  //     const unsub = onSnapshot(
-  //       query(collection(db, "courses"), where("uid", "==", user.uid)),
-  //       (querySnapshot) => {
-  //         const courses = [];
-  //         querySnapshot.forEach((doc) => {
-  //           courses.push({ ...doc.data(), id: doc.id });
-  //         });
-  //         setCourses(courses);
-  //       }
-  //     );
-  //     return () => {
-  //       unsub();
-  //     };
-
-  //   }
-  // }, [user]);
-
-
   const logOut = async () => {
     await signOut(auth);
   };
@@ -41,32 +28,70 @@ function Courses() {
   const handlePress = () => {
     setModalVisible(true);
   };
+  // return (
+  //   <>
+  //     <AddCourseModal
+  //       visible={modalVisible}
+  //       setVisible={() => {
+  //         setModalVisible(!modalVisible);
+  //       }}
+  //     />
+  //     <View style={{flexGrow: 1}}>
+  //       <View>
+  //       <Text>Cursos</Text>
+  //       <Button title="Crear curso" onPress={handlePress} />
+  //       <Button
+  //         title="SSS"
+  //         onPress={() => {
+  //           console.log(courses);
+  //         }}
+  //         />
+  //       </View>
+  //       <View style={{flexGrow: 1}}>
+  //         <FlatList
+  //           data={courses}
+  //           ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
+  //           style={{ flex: 1, flexDirection: "column" }}
+  //           scrollEnabled={true}
+  //           renderItem={({ item }) => {
+  //             return <CourseCard {...item} />;
+  //           }}
+  //           keyExtractor={(item) => item.id}
+  //         />
+  //       </View>
+  //       {/* <Button title="sign out" onPress={logOut} /> */}
+  //     </View>
+  //   </>
+  // );
   return (
-    <>
-      <AddCourseModal
-        visible={modalVisible}
-        setVisible={() => {
-          setModalVisible(!modalVisible);
-        }}
+    <View>
+    {/* <View>
+    <Text>Cursos</Text>
+    <Button title="Crear curso" onPress={handlePress} />
+    <Button
+      title="SSS"
+      onPress={() => {
+        console.log(courses);
+      }}
       />
-      <View>
-        <Text>Cursos</Text>
-        <Button title="Crear curso" onPress={handlePress} />
-        <Button
-          title="SSS"
-          onPress={() => {
-            console.log(courses);
+    </View> */}
+    {/* <View> */}
+      <FlatList
+        data={courses}
+        ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
+        style={{ flex: 1, flexDirection: "column" }}
+        renderItem={({ item }) => {
+          return <CourseCard {...item} />;
+        }}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={{
+          flexGrow: 1,
           }}
-        />
-        <FlatList
-          data={courses}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
-          keyExtractor={(item) => item.id}
-        />
-        <Button title="sign out" onPress={logOut} />
-      </View>
-    </>
-  );
+      />
+    {/* </View> */}
+    {/* <Button title="sign out" onPress={logOut} /> */}
+  </View>
+  )
 }
 
 const AddCourseModal = ({ visible, setVisible }) => {
@@ -90,7 +115,12 @@ const AddCourseModal = ({ visible, setVisible }) => {
         <Button title="Add" onPress={handleAdd} />
         <Button title="Cancel" onPress={handleCancel} />
         <TextInput value={name} onChangeText={setName} />
-        <Switch value={isFavorite} onValueChange={()=>{setIsFavorite(prev => !prev)}} />
+        <Switch
+          value={isFavorite}
+          onValueChange={() => {
+            setIsFavorite((prev) => !prev);
+          }}
+        />
       </View>
     </Modal>
   );
