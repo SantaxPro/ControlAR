@@ -1,14 +1,14 @@
-import React from 'react'
-import { UserAuth } from '../context/AuthContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import { NavigationBar } from "../components/NavigationBar";
+import { UserAuth } from "../context/AuthContext";
 
 export default function Courses() {
-  const {LogOut} = UserAuth();
+  const { LogOut, user } = UserAuth();
   return (
     <div>
-      Courses
-      <button onClick={LogOut}>
-        logout
-      </button>
+      <NavigationBar />
+      
     </div>
-  )
+  );
 }
