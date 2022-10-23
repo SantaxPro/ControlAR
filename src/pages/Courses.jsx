@@ -5,7 +5,7 @@ import { CourseCard } from "../components/CourseCard";
 import { NavigationBar } from "../components/NavigationBar";
 import { UserAuth } from "../context/AuthContext";
 import useCourses from "../hooks/useCourses";
-import CourseDialog from "../components/CourseDialog";
+import {AddCourseDialog} from "../components/CourseDialog";
 export default function Courses() {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const { LogOut, user } = UserAuth();
@@ -20,11 +20,13 @@ export default function Courses() {
         }}
       />
 
-      <CourseDialog isOpen={isDialogOpen} onClose={()=>setIsDialogOpen(false)} />
+      <AddCourseDialog isOpen={isDialogOpen} onClose={()=>setIsDialogOpen(false)} />
 
+      <div className='flex flex-col gap-4 mx-10' >
       {courses.map((course) => {
-        return <CourseCard {...course} />;
+        return <CourseCard id={course.id} />;
       })}
+      </div>
 
       {courses.length === 0 && (
         <h1 className="text-center text-2xl">No Courses</h1>

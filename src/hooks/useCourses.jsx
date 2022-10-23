@@ -25,4 +25,6 @@ const useCourses = () => {
   return { courses };
 };
 
+
+
 export default useCourses;
