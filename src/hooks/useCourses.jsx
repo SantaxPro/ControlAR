@@ -2,16 +2,13 @@ import React from "react";
 import { db } from "../database/firebase";
 import { onSnapshot, query, collection, where } from "firebase/firestore";
 
-const useCourses = (user) => {
+const useCourses = () => {
   const [courses, setCourses] = React.useState([]);
 
-  
-
-
   React.useEffect(() => {
-    if (user) {
+    
       const unsub = onSnapshot(
-        query(collection(db, "courses"), where("uid", "==", user.uid)),
+       collection(db, "courses"),
         (querySnapshot) => {
           const courses = [];
           querySnapshot.forEach((doc) => {
@@ -23,8 +20,8 @@ const useCourses = (user) => {
       return () => {
         unsub();
       };
-    }
-  }, [user]);
+    
+  }, []);
   return { courses };
 };
 

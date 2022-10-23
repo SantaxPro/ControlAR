@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.3",
     "firebase": "^9.12.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
