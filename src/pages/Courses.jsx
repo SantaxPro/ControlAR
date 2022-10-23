@@ -8,20 +8,27 @@ import useCourses from "../hooks/useCourses";
 import CourseDialog from "../components/CourseDialog";
 export default function Courses() {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-  
   const { LogOut, user } = UserAuth();
   const { courses } = useCourses();
+
   return (
     <div>
       <NavigationBar />
-      <ActionBar openDialog={()=>{setIsDialogOpen(true)}}/>
-      <CourseDialog isOpen={isDialogOpen}/>
-      {console.log(isDialogOpen)}
-      {courses.map((course)=>{
-        return <CourseCard {...course}/>
+      <ActionBar
+        openDialog={() => {
+          setIsDialogOpen(true);
+        }}
+      />
+
+      <CourseDialog isOpen={isDialogOpen} onClose={()=>setIsDialogOpen(false)} />
+
+      {courses.map((course) => {
+        return <CourseCard {...course} />;
       })}
 
-      {courses.length === 0 && <h1 className="text-center text-2xl">No Courses</h1>}
+      {courses.length === 0 && (
+        <h1 className="text-center text-2xl">No Courses</h1>
+      )}
     </div>
   );
 }

@@ -1,7 +1,17 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
+import { Button } from "./Button";
+import { useOperations } from "../context/OperationsContext";
 
 function CourseDialog({ isOpen, onClose }) {
+  const {addCourse} = useOperations()
+  const [courseName, setCourseName] = useState("");
+
+  const handleAddCourse = () => {
+    addCourse({ name: courseName });
+    onClose();
+  };
+
   return (
     <Dialog open={isOpen} onClose={() => onClose()}>
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
@@ -13,17 +23,21 @@ function CourseDialog({ isOpen, onClose }) {
           <input
             type="text"
             placeholder="Nombre del curso"
+            value={courseName}
+            onChange={(e) => setCourseName(e.target.value)}
             className="rounded-lg bg-gray-100 p-2"
           />
           <div className="flex flex-row gap-4">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">
-            Añadir Curso
-          </button>
-          <button className="bg-gray-200 hover:bg-gray-400 text-black font-bold py-1 px-4 rounded">
-            Cancelar
-          </button>
+            <Button
+              title="Añadir curso"
+              onClick={handleAddCourse}
+            />
+            <Button
+              title="Cancelar"
+              onClick={() => onClose()}
+              className="bg-gray-200 hover:bg-gray-400 text-black"
+            />
           </div>
-
         </Dialog.Panel>
       </div>
     </Dialog>
