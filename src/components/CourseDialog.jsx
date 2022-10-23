@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Button } from "./Button";
 import { useOperations } from "../context/OperationsContext";
+import { CustomInput } from "./CustomInput";
 
 const BaseDialog = ({ isOpen, onClose, children }) => {
   return (
@@ -35,6 +36,7 @@ export function AddCourseDialog({ isOpen, onClose }) {
           value={courseName}
           onChange={(e) => setCourseName(e.target.value)}
           className="rounded-lg bg-gray-100 p-2"
+          
         />
         <div className="flex flex-row gap-4">
           <Button title="Añadir curso" onClick={handleAddCourse} />
@@ -50,30 +52,37 @@ export function AddCourseDialog({ isOpen, onClose }) {
 }
 
 export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
+  const { deleteCourse } = useOperations();
+  const handleDeleteCourse = async () => {
+    await deleteCourse(course.id);
+    onClose();
+  };
   return (
     <BaseDialog isOpen={isOpen} onClose={onClose}>
       <Dialog.Panel className="flex items-start flex-col sm:w-96 gap-4  p-8  rounded-xl bg-white">
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-bold">{course?.name}</h1>
+          <CustomInput text={course?.name} courseId={course?.id} />
           <h2 className="text-lg font-bold">Estudiantes</h2>
           <ul className="p-4 flex flex-col gap-2 border-2 border-gray-200 rounded-md">
             {course?.students?.map((student) => (
-              <li className='p-2 m-2' key={student.id}>{student.name}</li>
+              <li className="p-2 m-2" key={student.id}>
+                {student.name}
+              </li>
             ))}
             {course?.students?.length === 0 && (
               <li className="text-gray-400">No hay estudiantes</li>
             )}
           </ul>
         </div>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-4 items-center">
           <Button
             title="Cerrar"
             onClick={() => onClose()}
             className="bg-gray-200 hover:bg-gray-400 text-black"
           />
+          <Button onClick={handleDeleteCourse} className='bg-red-500 w-10 h-10 hover:bg-red-600' />
         </div>
       </Dialog.Panel>
     </BaseDialog>
   );
 };
-
