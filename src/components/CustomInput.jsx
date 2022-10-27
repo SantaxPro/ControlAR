@@ -18,11 +18,11 @@ export const CustomInput = ({ text, courseId }) => {
 
   const handleEnterKey = async (e) => {
     if (e.key === "Enter") {
-        e.target.readOnly = true;
-        e.target.blur();
-        await updateCourseName(courseId, e.target.value);
+      e.target.readOnly = true;
+      e.target.blur();
+      await updateCourseName(courseId, e.target.value);
     }
-    };
+  };
   return (
     <input
       type="text"

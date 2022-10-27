@@ -4,6 +4,7 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  arrayUnion
 } from "firebase/firestore";
 import { db } from "../database/firebase";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -27,9 +28,17 @@ export const OperationsProvider = ({ children }) => {
       name: courseName,
     });
   };
+  const addStudent = async (student) => {
+    const createdStudent = await addDoc(collection(db, "students"), student);
+    // student.id = createdStudent.id;
+    console.log(createdStudent.id);
+    await updateDoc(doc(db, "courses", student.course.id), {
+      students: arrayUnion(student),
+    });
+  };
 
   return (
-    <OperationsContext.Provider value={{ addCourse, deleteCourse, updateCourseName }}>
+    <OperationsContext.Provider value={{ addCourse, deleteCourse, updateCourseName, addStudent }}>
       {children}
     </OperationsContext.Provider>
   );

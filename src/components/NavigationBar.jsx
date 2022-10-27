@@ -6,13 +6,15 @@ export const NavigationBar = () => {
   const { user } = UserAuth();
   return (
     <nav className="flex rounded-b-md  container  mx-auto bg-gray-400 h-16 p-2 items-center justify-end">
-      <img
-        src={user?.photoURL}
-        alt="profile picture"
-        className="w-10 h-10 rounded-full mr-auto"
-      />
-        <NavLink to="courses" />
-        <NavLink to="students" />
+      <span className="rounded-full mr-auto w-10 h-10 bg-gray-700">
+        <img
+          src={user?.photoURL}
+          alt="pfp"
+          className="w-full h-full bg-cover"
+        />
+      </span>
+      <NavLink to="courses" />
+      <NavLink to="students" />
     </nav>
   );
 };

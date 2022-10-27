@@ -10,6 +10,5 @@ export const ActionBar = ({openDialog}) => {
             </button>
         </div>
     </div>
-
   )
 }
