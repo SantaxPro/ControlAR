@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Courses from "./pages/Courses";
 import Students from "./pages/Students";
+import ProfileScreen from "./pages/Profile";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import {OperationsProvider} from "./context/OperationsContext";
@@ -20,6 +21,14 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <Courses />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoutes>
+                  <ProfileScreen />
                 </ProtectedRoutes>
               }
             />
