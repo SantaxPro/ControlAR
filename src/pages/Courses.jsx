@@ -24,7 +24,7 @@ export default function Courses() {
 
       <div className='flex flex-col gap-4 mx-10' >
       {courses.map((course) => {
-        return <CourseCard id={course.id} />;
+          return <CourseCard id={course.id} key={course.id}/>;
       })}
       </div>
 

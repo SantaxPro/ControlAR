@@ -30,8 +30,7 @@ export const OperationsProvider = ({ children }) => {
   };
   const addStudent = async (student) => {
     const createdStudent = await addDoc(collection(db, "students"), student);
-    // student.id = createdStudent.id;
-    console.log(createdStudent.id);
+    // student.id = createdStudent.id
     await updateDoc(doc(db, "courses", student.course.id), {
       students: arrayUnion(student),
     });
