@@ -25,6 +25,7 @@ export function AddCourseDialog({isOpen, onClose}) {
     const handleAddCourse = () => {
         addCourse({name: courseName});
         onClose();
+        setCourseName("");
     };
 
     return (
