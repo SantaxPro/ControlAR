@@ -1,7 +1,8 @@
 import React from "react";
 import { StudentActionBar } from "../components/ActionBar";
-import { AddStudentDialog } from "../components/CourseDialog";
+import { AddStudentDialog } from "../components/Dialog";
 import { NavigationBar } from "../components/NavigationBar";
+import { StudentCard } from "../components/StudentCard";
 import useStudents from "../hooks/useStudents";
 import { NavigationLayout } from "./layout/Layout";
 export default function Students() {
@@ -22,7 +23,7 @@ export default function Students() {
       />
       <div className="flex flex-col gap-4 mx-10">
         {students.map((student) => {
-          return <h2 key={student.id}>{student.name}</h2>;
+          return <StudentCard key={student.id} {...student} />;
         })}
       </div>
     </NavigationLayout>
