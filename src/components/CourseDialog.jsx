@@ -160,11 +160,6 @@ export const AddStudentDialog = ({isOpen, onClose}) => {
                         </option>
                     ))}
                 </select>
-                <button onClick={() => {
-                    console.log(selectedCourse)
-                }}>
-                    dddd
-                </button>
                 <div className="flex flex-row gap-4">
                     <Button title="Añadir estudiante" onClick={handleAddStudent}/>
                     <Button
