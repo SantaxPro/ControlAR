@@ -4,8 +4,9 @@ import { Button } from "./Button";
 import { useOperations } from "../context/OperationsContext";
 import useCourses from "../hooks/useCourses";
 import { useStudentsByCourse } from "../hooks/useStudents.jsx";
+import useSingleCourse from "../hooks/useSingleCourse";
 
-import { CustomInput } from "./CustomInput";
+import { StudentCustomInput } from "./CustomInput";
 
 const BaseDialog = ({ isOpen, onClose, children }) => {
   return (
@@ -56,6 +57,7 @@ export function AddCourseDialog({ isOpen, onClose }) {
 
 export const DetailsStudentDialog = ({ isOpen, onClose, studentId, student }) => {
     const { addStudentToCourse, deleteStudent } = useOperations();
+    const {course} = useSingleCourse(student?.course.id);
     const { courses } = useCourses();
     const handleDeleteStudent = () => {
       deleteStudent(studentId, student);
@@ -67,8 +69,15 @@ export const DetailsStudentDialog = ({ isOpen, onClose, studentId, student }) =>
                     Detalles del estudiante
                 </Dialog.Title>
                 <div className="flex flex-col gap-2">
-                    <p>Nombre: {student?.name}</p>
-                    <p>Apellido: {student?.lastname}</p>
+                  <div className="flex flex-row items-center font-medium gap-3">
+                    Nombre: <StudentCustomInput text={student.name} studentId={studentId} target="name" />
+                  </div>
+                  <div className="flex flex-row items-center font-medium gap-3"> 
+                    Apellido: <StudentCustomInput text={student.lastname} studentId={studentId} target="lastname" />
+                  </div>
+                  <div className="flex flex-row items-center font-medium gap-3"> 
+                    Curso: {course?.name}
+                  </div>
                 </div>
                 <Button title="Eliminar estudiante" onClick={handleDeleteStudent} className={"bg-red-500 text-white"} />
             </Dialog.Panel>
@@ -168,9 +177,11 @@ export const AddStudentDialog = ({ isOpen, onClose }) => {
           defaultValue={"DEFAULT"}
           title="Curso"
         >
-          <option value="DEFAULT" disabled>
+          {courses.length === 0 ? <option value={"DEFAULT"} disabled>
+            No hay cursos
+          </option> :        <option value="DEFAULT" disabled>
             Seleccione un curso
-          </option>
+          </option>}
           {courses.map((course) => (
             <option key={course.id} value={course.id}>
               {course.name}

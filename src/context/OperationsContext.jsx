@@ -5,7 +5,7 @@ import {
   doc,
   updateDoc,
   arrayUnion,
-  arrayRemove
+  arrayRemove,
 } from "firebase/firestore";
 import { db } from "../database/firebase";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -29,6 +29,17 @@ export const OperationsProvider = ({ children }) => {
       name: courseName,
     });
   };
+  const updateStudentName = (studentId, studentName) => {
+    updateDoc(doc(db, "students", studentId), {
+      name: studentName,
+    });
+  };
+  const updateStudentLastName = (studentId, studentLastname) => {
+    updateDoc(doc(db, "students", studentId), {
+      lastname: studentLastname,
+    });
+  };
+
   const addStudent = async (student) => {
     const createdStudent = await addDoc(collection(db, "students"), student);
     // student.id = createdStudent.id
@@ -47,7 +58,17 @@ export const OperationsProvider = ({ children }) => {
   };
 
   return (
-    <OperationsContext.Provider value={{ addCourse, deleteCourse, updateCourseName, addStudent, deleteStudent }}>
+    <OperationsContext.Provider
+      value={{
+        addCourse,
+        deleteCourse,
+        updateCourseName,
+        addStudent,
+        deleteStudent,
+        updateStudentLastName,
+        updateStudentName,
+      }}
+    >
       {children}
     </OperationsContext.Provider>
   );
