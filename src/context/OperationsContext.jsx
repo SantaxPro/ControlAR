@@ -6,6 +6,8 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  deleteField,
+
 } from "firebase/firestore";
 import { db } from "../database/firebase";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -29,6 +31,15 @@ export const OperationsProvider = ({ children }) => {
       name: courseName,
     });
   };
+  const deleteStudentFromCourse = async (courseId,studentId,  student) => {
+    await updateDoc(doc(db, "students", studentId), {
+      course: deleteField(),
+    });
+    updateDoc(doc(db, "courses", courseId), {
+      students: arrayRemove(student),
+    });
+  };
+
   const updateStudentName = (studentId, studentName) => {
     updateDoc(doc(db, "students", studentId), {
       name: studentName,
@@ -52,9 +63,11 @@ export const OperationsProvider = ({ children }) => {
     const studentDoc = doc(db, "students", studentId);
     await deleteDoc(studentDoc);
     //Delete student from course
+    if (student.course.id) {
     await updateDoc(doc(db, "courses", student.course.id), {
       students: arrayRemove(student),
     });
+    }
   };
 
   return (
@@ -67,6 +80,7 @@ export const OperationsProvider = ({ children }) => {
         deleteStudent,
         updateStudentLastName,
         updateStudentName,
+        deleteStudentFromCourse
       }}
     >
       {children}

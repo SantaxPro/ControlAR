@@ -23,7 +23,7 @@ export const StudentCard = (props) => {
           name: props.name,
           lastname: props.lastname,
           course: {
-            id: props.course.id,
+            id: props.course?.id,
           },
         }}
       />

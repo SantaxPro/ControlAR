@@ -31,8 +31,10 @@ const useStudentsByCourse = (courseId) => {
                 (querySnapshot) => {
                     const students = [];
                     querySnapshot.forEach((doc) => {
-                        if (doc.data().course.id === courseId) {
-                            students.push({...doc.data(), id: doc.id});
+                        if (doc.data().course) {
+                            if (doc.data().course.id === courseId) {
+                                students.push({...doc.data(), id: doc.id});
+                            }
                         }
                     });
                     setStudents(students);

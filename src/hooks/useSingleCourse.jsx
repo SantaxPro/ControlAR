@@ -5,6 +5,9 @@ const useSingleCourse = (id) => {
     const [course, setCourse] = React.useState(null);
   
     React.useEffect(() => {
+      if (!id) {
+        return;
+      }
       const unsub = onSnapshot(
         doc(db, "courses", id),
         (doc) => {
