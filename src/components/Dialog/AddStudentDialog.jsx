@@ -10,6 +10,7 @@ export const AddStudentDialog = ({ isOpen, onClose }) => {
     const [studentName, setStudentName] = useState("");
     const [studentLastName, setStudentLastName] = useState("");
     const [selectedCourse, setSelectedCourse] = useState("");
+    
     const handleAddStudent = () => {
       if (!selectedCourse || !studentName || !studentLastName) {
         alert("Por favor llene todos los campos");

@@ -1,5 +1,6 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { Button } from "./Button";
 
 export const ActionBar = ({ openDialog, name }) => {
   return (
@@ -11,14 +12,10 @@ export const ActionBar = ({ openDialog, name }) => {
         Buscar
       </p>
       <div>
-        <button
-          onClick={() => {
-            openDialog();
-          }}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
-        >
-          Añadir {name}
-        </button>
+        <Button title={`Añadir ${name}`} onClick={()=>{openDialog()}} 
+        className="h-10 bg-transparent
+         text-blue-500
+          border-blue-500 hover:bg-blue-500 hover:text-white border-2 transition-all ease-in-out duration-200"/>
       </div>
     </div>
   );
