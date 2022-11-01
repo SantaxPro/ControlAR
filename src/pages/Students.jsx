@@ -1,8 +1,7 @@
 import React from "react";
 import { StudentActionBar } from "../components/ActionBar";
 import { AddStudentDialog } from "../components/Dialog";
-import { NavigationBar } from "../components/NavigationBar";
-import { StudentCard } from "../components/StudentCard";
+import {StudentCard}  from "../components/Card";
 import useStudents from "../hooks/useStudents";
 import { NavigationLayout } from "./layout/Layout";
 export default function Students() {

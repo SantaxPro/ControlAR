@@ -35,6 +35,7 @@ export const OperationsProvider = ({ children }) => {
     await updateDoc(doc(db, "students", studentId), {
       course: deleteField(),
     });
+    console.log(student);
     updateDoc(doc(db, "courses", courseId), {
       students: arrayRemove(student),
     });
@@ -49,6 +50,19 @@ export const OperationsProvider = ({ children }) => {
     updateDoc(doc(db, "students", studentId), {
       lastname: studentLastname,
     });
+  };
+
+  const addStudentToCourse = async (courseId, studentId, student) => {
+    await updateDoc(doc(db, "students", studentId), {
+      course: { id: courseId },
+    }).then(() => {
+      updateDoc(doc(db, "courses", courseId), {
+        students: arrayUnion({name: student.name, lastname: student.lastname, course: {id: courseId}}),
+      });
+    });
+    // updateDoc(doc(db, "courses", courseId), {
+    //   students: arrayUnion(student),
+    // });
   };
 
   const addStudent = async (student) => {
@@ -80,7 +94,8 @@ export const OperationsProvider = ({ children }) => {
         deleteStudent,
         updateStudentLastName,
         updateStudentName,
-        deleteStudentFromCourse
+        deleteStudentFromCourse,
+        addStudentToCourse,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import React from "react";
-import useSingleCourse from "../hooks/useSingleCourse";
-import { DetailsCourseDialog } from "./Dialog";
+import useSingleCourse from "../../hooks/useSingleCourse";
+import { DetailsCourseDialog } from "../Dialog";
 
 export const CourseCard = ({ id }) => {
   const [isOpen, setIsOpen] = React.useState(false);

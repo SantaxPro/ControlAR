@@ -1,7 +1,7 @@
 import React from "react";
-import { DetailsStudentDialog } from "./Dialog";
+import { DetailsStudentDialog } from "../Dialog";
 
-export const StudentCard = (props) => {
+const StudentCard = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div
@@ -30,3 +30,5 @@ export const StudentCard = (props) => {
     </div>
   );
 };
+
+export default StudentCard;

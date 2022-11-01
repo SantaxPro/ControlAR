@@ -1,6 +1,6 @@
 import React from "react";
 import { CourseActionBar } from "../components/ActionBar";
-import { CourseCard } from "../components/CourseCard";
+import { CourseCard } from "../components/Card";
 import { AddCourseDialog } from "../components/Dialog";
 import { NavigationLayout } from "./layout/Layout";
 import useCourses from "../hooks/useCourses";
