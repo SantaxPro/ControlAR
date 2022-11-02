@@ -1,11 +1,12 @@
 import React from 'react'
-import { NavigationBar } from '../../components/NavigationBar'
+import { EmptyNavigationBar, NavigationBar } from '../../components/NavigationBar'
 
-export const NavigationLayout = ({children}) => {
+export const NavigationLayout = ({children, empty, text}) => {
   return (
     <div>
-        <NavigationBar />
+      {empty ? <EmptyNavigationBar text={text} /> : <NavigationBar/>}
         {children}
     </div>
   )
 }
+

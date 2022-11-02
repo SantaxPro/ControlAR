@@ -27,16 +27,29 @@ export const NavigationBar = () => {
   );
 };
 
-export const EmptyNavigationBar = () => {
+export const EmptyNavigationBar = ({text}) => {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
   return (
     <NavigationBarContainer>
-      <AiOutlineArrowLeft className="mr-auto w-8 h-8 ml-4" onClick={goBack} />
+      <AiOutlineArrowLeft className="mr-auto w-6 h-7 ml-2" onClick={goBack} />
+      {text && <BarTitle text={text}/>}
     </NavigationBarContainer>
   );
 };
+
+const BarTitle = ({text})=>{
+  return (
+    <span className="mr-auto font-medium text-1xl flex flex-col items-center">
+      {text} - Asistencia
+      <span>
+        {new Date().toLocaleDateString()}
+      </span>
+    </span>
+  )
+
+}
 
 

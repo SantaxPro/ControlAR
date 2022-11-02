@@ -8,6 +8,7 @@ import ProfileScreen from "./pages/Profile";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import {OperationsProvider} from "./context/OperationsContext";
+import { CourseAttendance } from "./pages/CourseAttendance";
 function App() {
   return (
     <OperationsProvider>
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/courses/:id/attendance" element={<ProtectedRoutes><CourseAttendance /></ProtectedRoutes>} />
             <Route
               path="/courses"
               element={
