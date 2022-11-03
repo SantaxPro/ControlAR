@@ -3,7 +3,7 @@ import { EmptyNavigationBar, NavigationBar } from '../../components/NavigationBa
 
 export const NavigationLayout = ({children, empty, text}) => {
   return (
-    <div>
+    <div className='w-full h-full mt-16'>
       {empty ? <EmptyNavigationBar text={text} /> : <NavigationBar/>}
         {children}
     </div>

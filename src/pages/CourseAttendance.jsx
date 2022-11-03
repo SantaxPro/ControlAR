@@ -13,6 +13,8 @@ export const CourseAttendance = () => {
           <span>Cantidad de alumnos: {course?.students.length}</span>
           Alumnos:
           <table className="border-2 border-gray-200">
+            <tbody> 
+
             {course?.students.map((student) => {
               return (
                 <tr className="border-b-2 border-gray-200">
@@ -20,7 +22,11 @@ export const CourseAttendance = () => {
                 </tr>
               );
             })}
+            </tbody>
           </table>
+        </div>
+        <div className="fixed w-full bg-neutral-400">
+            
         </div>
       </div>
     </NavigationLayout>

@@ -17,8 +17,8 @@ export const CourseCard = ({ id }) => {
   return (
     <>
       <div
-        className="flex flex-col justify-center
-        items-start p-12 bg-gray-100 rounded-lg
+        className="flex flex-col justify-around 
+        items-start p-4 px-8 h-40 bg-gray-100 rounded-lg
       hover:bg-gray-200 transition-all ease-in duration-100
       shadow-lg cursor-pointer"
         onClick={handleCourseDetails}

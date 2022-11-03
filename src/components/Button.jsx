@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Button = ({ title, onClick, className }) => {
+export const Button = ({ title, onClick, className, blue}) => {
   
   const defaultBlueButtonStyles =
     "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
@@ -10,7 +10,7 @@ export const Button = ({ title, onClick, className }) => {
 
   if (className) {
     return (
-      <button onClick={onClick} className={`${defaultStyles} ${className}`}>
+      <button onClick={onClick} className={`${blue == true ? (defaultBlueButtonStyles) : (defaultStyles)} ${className}`}>
         {title}
       </button>
     );
