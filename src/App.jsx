@@ -9,6 +9,8 @@ import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import {OperationsProvider} from "./context/OperationsContext";
 import { CourseAttendance } from "./pages/CourseAttendance";
+import { AttendanceProcess } from "./pages/AttendanceProcess";
+import { AttendanceSheet } from "./pages/AttendanceSheet";
 function App() {
   return (
     <OperationsProvider>
@@ -26,6 +28,23 @@ function App() {
                 </ProtectedRoutes>
               }
             />
+            <Route
+              path="/courses/:id/sheet"
+              element={
+                <ProtectedRoutes>
+                  <AttendanceSheet />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/courses/:id/attendance/process"
+              element={
+                <ProtectedRoutes>
+                  <AttendanceProcess />
+                </ProtectedRoutes>
+              }
+            />
+
             <Route
               path="/profile"
               element={

@@ -15,6 +15,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 const OperationsContext = createContext();
 
 export const OperationsProvider = ({ children }) => {
+
+  const [isCourseAttendanceReady, setIsCourseAttendanceReady] = useState(false);
+
   const addCourse = (course) => {
     const newCourse = {
       ...course,
@@ -96,6 +99,8 @@ export const OperationsProvider = ({ children }) => {
         updateStudentName,
         deleteStudentFromCourse,
         addStudentToCourse,
+        isCourseAttendanceReady,
+        setIsCourseAttendanceReady,
       }}
     >
       {children}
