@@ -7,7 +7,6 @@ import {
   arrayUnion,
   arrayRemove,
   deleteField,
-
 } from "firebase/firestore";
 import { db } from "../database/firebase";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -15,7 +14,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 const OperationsContext = createContext();
 
 export const OperationsProvider = ({ children }) => {
-
   const [isCourseAttendanceReady, setIsCourseAttendanceReady] = useState(false);
 
   const addCourse = (course) => {
@@ -34,7 +32,7 @@ export const OperationsProvider = ({ children }) => {
       name: courseName,
     });
   };
-  const deleteStudentFromCourse = async (courseId,studentId,  student) => {
+  const deleteStudentFromCourse = async (courseId, studentId, student) => {
     await updateDoc(doc(db, "students", studentId), {
       course: deleteField(),
     });
@@ -60,7 +58,11 @@ export const OperationsProvider = ({ children }) => {
       course: { id: courseId },
     }).then(() => {
       updateDoc(doc(db, "courses", courseId), {
-        students: arrayUnion({name: student.name, lastname: student.lastname, course: {id: courseId}}),
+        students: arrayUnion({
+          name: student.name,
+          lastname: student.lastname,
+          course: { id: courseId },
+        }),
       });
     });
     // updateDoc(doc(db, "courses", courseId), {
@@ -81,10 +83,51 @@ export const OperationsProvider = ({ children }) => {
     await deleteDoc(studentDoc);
     //Delete student from course
     if (student.course.id) {
-    await updateDoc(doc(db, "courses", student.course.id), {
-      students: arrayRemove(student),
-    });
+      await updateDoc(doc(db, "courses", student.course.id), {
+        students: arrayRemove(student),
+      });
     }
+  };
+
+  const addAttendanceEntry = async (courseId, attendanceEntry) => {
+    const createdAttendanceEntry = await addDoc(
+      collection(db, "attendanceEntrys"),
+      attendanceEntry
+    );
+    await updateDoc(doc(db, "courses", courseId), {
+      attendanceEntrys: arrayUnion({
+        id: createdAttendanceEntry.id,
+        date: attendanceEntry.date,
+      }),
+    });
+  };
+
+  const createAttendanceRegistry = async (
+    courseId,
+    preceptorName,
+    registryDate
+  ) => {
+    const attendanceRegistry = {
+      courseId: courseId,
+      preceptorName: preceptorName,
+      date: registryDate,
+      studentEntrys: [],
+    };
+    const createdRegistryId = addDoc(
+      collection(db, "attendanceRegistries"),
+      attendanceRegistry
+    ).then((createdRegistry) => {
+      const createdRegistryId = createdRegistry.id;
+      return createdRegistryId;
+    });
+
+    return createdRegistryId;
+  };
+
+  const deleteAttendanceRegistry = async (registryId) => {
+    const registryDoc = doc(db, "attendanceRegistries", registryId);
+    await deleteDoc(registryDoc);
+    // console.log('doc exitoso', registryDoc);
   };
 
   return (
@@ -101,6 +144,9 @@ export const OperationsProvider = ({ children }) => {
         addStudentToCourse,
         isCourseAttendanceReady,
         setIsCourseAttendanceReady,
+        addAttendanceEntry,
+        createAttendanceRegistry,
+        deleteAttendanceRegistry,
       }}
     >
       {children}
