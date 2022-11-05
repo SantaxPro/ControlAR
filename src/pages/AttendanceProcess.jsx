@@ -18,10 +18,10 @@ export const AttendanceProcess = () => {
   const { course } = useSingleCourse(id);
   const { students } = useStudentsByCourse(id);
   const {
-    createAttendanceRegistry,
     isCourseAttendanceReady,
     setIsCourseAttendanceReady,
     deleteAttendanceRegistry,
+    addRegistryToCourse,
   } = useOperations();
 
   const [isRegistryReady, setIsRegistryReady] = React.useState(false);
@@ -52,6 +52,18 @@ export const AttendanceProcess = () => {
     setInternalCount((prev) => ({ ...prev, current: prev.current + 1 }));
   };
 
+  //ESta funcion se ejecuta cuando el registro fue finalizado
+  //Osea cuando a todos los alumnos se les asigno un estado
+  const handleRegistryReady = () => {
+    
+  
+    addRegistryToCourse(id, registryId);
+
+    navigate("/courses");
+    setIsCourseAttendanceReady(false);
+  };
+
+
   return (
     <div className="p-6 bg-screen flex flex-col">
       <span className="text-2xl font-bold">
@@ -60,11 +72,7 @@ export const AttendanceProcess = () => {
       <div className="flex flex-row gap-6">
         <Button
           title="Listo"
-          onClick={() => {
-            navigate("/courses");
-            setIsCourseAttendanceReady(false);
-          }}
-          
+          onClick={handleRegistryReady}
           className={`h-8 w-fit flex items-center my-3 ${
             isRegistryReady
               ? "bg-green-400"

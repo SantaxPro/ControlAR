@@ -10,3 +10,12 @@ export const NavigationLayout = ({children, empty, text}) => {
   )
 }
 
+export const EmptyNavigationLayout = ({children, text}) => {
+  return (
+    <div className='w-full h-full mt-16'>
+      <EmptyNavigationBar text={text} />
+        {children}
+    </div>
+  )
+}
+

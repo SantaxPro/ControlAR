@@ -123,6 +123,12 @@ export const OperationsProvider = ({ children }) => {
     // console.log('doc exitoso', registryDoc);
   };
 
+  const addRegistryToCourse = async (courseId, registryId) => {
+    await updateDoc(doc(db, "courses", courseId), {
+      attendanceEntrys: arrayUnion(registryId),
+    });
+  };
+
   return (
     <OperationsContext.Provider
       value={{
@@ -140,6 +146,7 @@ export const OperationsProvider = ({ children }) => {
         addStudentAttendanceEntry,
         createAttendanceRegistry,
         deleteAttendanceRegistry,
+        addRegistryToCourse
       }}
     >
       {children}
