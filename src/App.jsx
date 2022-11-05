@@ -37,7 +37,7 @@ function App() {
               }
             />
             <Route
-              path="/courses/:id/attendance/process"
+              path="/courses/attendance/process/:id/:registryId"
               element={
                 <ProtectedRoutes>
                   <AttendanceProcess />

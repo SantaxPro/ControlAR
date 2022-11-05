@@ -7,76 +7,117 @@ import { useStudentsByCourse } from "../hooks/useStudents";
 import { Button } from "../components/Button";
 import { UserAuth } from "../context/AuthContext";
 
+// createAttendanceRegistry(id, user.displayName, new Date()).then(
+//   (registryId) => {
+//     setAttendanceRegistryId(registryId);
+//   }
 export const AttendanceProcess = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, registryId } = useParams();
   const { user } = UserAuth();
   const { course } = useSingleCourse(id);
   const { students } = useStudentsByCourse(id);
-
-  //Viene del contexto
   const {
     createAttendanceRegistry,
-    deleteAttendanceRegistry,
     isCourseAttendanceReady,
     setIsCourseAttendanceReady,
+    deleteAttendanceRegistry,
   } = useOperations();
 
-  const [attendanceRegistryId, setAttendanceRegistryId] = React.useState(null);
+  const [isRegistryReady, setIsRegistryReady] = React.useState(false);
+  //Current empieza en 1 por que 
+  const [internalCount, setInternalCount] = React.useState({current: 1, total: students.length});
+
+  const handleCancel = () => {
+    navigate("/courses");
+    // console.log('apretaste cancel con esta id: ' + attendanceRegistryId)
+    deleteAttendanceRegistry(registryId);
+  };
 
   React.useEffect(() => {
     //Para no poder navegar a esta pagina si no es apretando el boton de "Tomar asistencia"
     if (!isCourseAttendanceReady) {
       navigate("/courses");
     }
+    setInternalCount((prev) => ({ ...prev, total: students.length }));
+    return () => {
+      setIsCourseAttendanceReady(false);
+    }
+  }, [students]);
 
-    createAttendanceRegistry(id, user.displayName, new Date()).then(
-      (registryId) => {
-        setAttendanceRegistryId(registryId);
-      }
-    );
-  }, []);
-
-  const handleCancel = () => {
-    navigate("/courses");
-    // console.log('apretaste cancel con esta id: ' + attendanceRegistryId)
-    deleteAttendanceRegistry(attendanceRegistryId);
+  const handleInternalCount = () => {
+    if (internalCount.current === internalCount.total) {
+      setIsRegistryReady(true);
+    }
+    setInternalCount((prev) => ({ ...prev, current: prev.current + 1 }));
   };
 
   return (
     <div className="p-6 bg-screen flex flex-col">
-      <span className="text-1xl font-bold">
+      <span className="text-2xl font-bold">
         {course?.name} - Asistencia {new Date().toLocaleDateString()}
       </span>
-      <Button
-        title="Finalizar"
-        onClick={handleCancel}
-        className="h-8 w-fit flex items-center my-3 bg-red-400 text-white"
-      />
+      <div className="flex flex-row gap-6">
+        <Button
+          title="Listo"
+          onClick={() => {
+            navigate("/courses");
+            setIsCourseAttendanceReady(false);
+          }}
+          
+          className={`h-8 w-fit flex items-center my-3 ${
+            isRegistryReady
+              ? "bg-green-400"
+              : "bg-transparent border-2 border-gray-600 text-d-blue cursor-default opacity-60"
+          }`}
+        />
+        <Button
+          title="Cancelar"
+          onClick={handleCancel}
+          className="h-8 w-fit flex items-center my-3 bg-red-400 text-white"
+        />
+      </div>
       <section className="flex flex-col">
         {students?.map((student) => {
-          return <Student key={student.id} student={student} course={course} />;
+          return (
+            <Student
+              key={student.id}
+              student={student}
+              course={course}
+              registryId={registryId}
+              updateInternalCount={ () => {
+                handleInternalCount()
+              }}
+            />
+          );
         })}
+        {isRegistryReady && (
+          <div className="flex flex-col items-center">
+            <span className="text-2xl font-bold">¡Asistencia tomada!</span>
+            <span className="text-xl font-bold">
+              {internalCount.current -1} de {internalCount.total} alumnos
+            </span>
+          </div>
+        )}
       </section>
     </div>
   );
 };
 
-const Student = ({ student, course }) => {
+const Student = ({ student, course, registryId, updateInternalCount }) => {
   const [isDone, setIsDone] = React.useState(false);
-  const { addAttendanceEntry } = useOperations();
+  const { addStudentAttendanceEntry } = useOperations();
   const handleAttendance = (state) => {
     setIsDone(!isDone);
-    addAttendanceEntry({
+    addStudentAttendanceEntry(registryId, {
       student: {
-        id: student.id,
         name: student.name,
         lastname: student.lastname,
+        id: student.id,
       },
-      course: { id: course.id, name: course.name },
-      date: new Date(),
-      state: state,
+      state,
     });
+    updateInternalCount();
   };
 
   return (

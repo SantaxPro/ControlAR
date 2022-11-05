@@ -1,9 +1,10 @@
 import { Dialog } from "@headlessui/react";
-import { Button } from "../Button";
+import { Button, IconButton } from "../Button";
 import { useNavigate } from "react-router-dom";
 import { useOperations } from "../../context/OperationsContext";
 import { useStudentsByCourse } from "../../hooks/useStudents.jsx";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
+import {BsFillTrashFill} from 'react-icons/bs';
 import { CustomInput } from "../CustomInput";
 import BaseDialog from "./BaseDialog";
 
@@ -46,7 +47,7 @@ export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
                 >
                   {student.name}
                   <IoMdRemoveCircleOutline
-                    className="w-6 h-6 "
+                    className="w-6 h-6 hover:scale-110 transition-transform ease-linear duration-150 cursor-pointer"
                     color="#FF4040"
                     onClick={() => handleRemoveStudent(student)}
                   />
@@ -60,20 +61,18 @@ export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
         </div>
         <div className="flex flex-row gap-4 items-center">
           <Button
-            title="Cerrar"
-            onClick={() => onClose()}
-            className="bg-gray-200 hover:bg-gray-400 text-black"
-          />
-          <Button
             title="Planilla"
             onClick={handleOpenSheet}
             className="h-10 flex items-center bg-transparent border-2 border-blue-400 
               hover:bg-blue-500 hover:border-blue-500 transition-all ease-out duration-150"
           />
           <Button
-            onClick={handleDeleteCourse}
-            className="bg-red-500 w-10 h-10 hover:bg-red-600"
+            title="Cerrar"
+            onClick={() => onClose()}
+            className="bg-gray-200 hover:bg-gray-400 text-black"
           />
+          <IconButton icon={<BsFillTrashFill color="#fff" className="w-5 h-5"/>} className="bg-red-500 
+          hover:bg-red-600 rounded-lg w-10 h-10 flex items-center justify-center" />
         </div>
       </Dialog.Panel>
     </BaseDialog>

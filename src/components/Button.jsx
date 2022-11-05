@@ -22,3 +22,11 @@ export const Button = ({ title, onClick, className, blue}) => {
     </button>
   );
 };
+
+export const IconButton = ({ onClick, className, icon }) => {
+  return (
+    <button onClick={onClick} className={className}>
+      {icon}
+    </button>
+  );
+}

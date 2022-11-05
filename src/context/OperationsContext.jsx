@@ -89,16 +89,9 @@ export const OperationsProvider = ({ children }) => {
     }
   };
 
-  const addAttendanceEntry = async (courseId, attendanceEntry) => {
-    const createdAttendanceEntry = await addDoc(
-      collection(db, "attendanceEntrys"),
-      attendanceEntry
-    );
-    await updateDoc(doc(db, "courses", courseId), {
-      attendanceEntrys: arrayUnion({
-        id: createdAttendanceEntry.id,
-        date: attendanceEntry.date,
-      }),
+  const addStudentAttendanceEntry = async (registryId, studentEntry) => {
+    await updateDoc(doc(db, "attendanceRegistries", registryId), {
+      studentEntrys: arrayUnion(studentEntry ),
     });
   };
 
@@ -144,7 +137,7 @@ export const OperationsProvider = ({ children }) => {
         addStudentToCourse,
         isCourseAttendanceReady,
         setIsCourseAttendanceReady,
-        addAttendanceEntry,
+        addStudentAttendanceEntry,
         createAttendanceRegistry,
         deleteAttendanceRegistry,
       }}
