@@ -32,6 +32,7 @@ export const CourseCard = ({ id }) => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         course={course}
+        
       />
     </>
   );

@@ -3,15 +3,23 @@ import { Button, IconButton } from "../Button";
 import { useNavigate } from "react-router-dom";
 import { useOperations } from "../../context/OperationsContext";
 import { useStudentsByCourse } from "../../hooks/useStudents.jsx";
-import { IoMdRemoveCircleOutline } from "react-icons/io";
+import { IoMdRemoveCircleOutline} from "react-icons/io";
+import {MdPersonAddAlt1} from "react-icons/md";
 import {BsFillTrashFill} from 'react-icons/bs';
 import { CustomInput } from "../CustomInput";
 import BaseDialog from "./BaseDialog";
+import { AddStudentToCourseDialog } from "./AddStudentToCourseDialog";
+import React from "react";
 
 export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
   const navigate = useNavigate();
   const { deleteCourse, deleteStudentFromCourse } = useOperations();
   const { students } = useStudentsByCourse(course?.id);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+
+  const handleAddStudentToCourse = ()=>{
+    setIsDialogOpen(true);s
+  }
 
   const handleDeleteCourse = async () => {
     await deleteCourse(course.id);
@@ -32,7 +40,12 @@ export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
       <Dialog.Panel className="flex items-start flex-col sm:w-96 gap-4  p-8  rounded-xl bg-white">
         <div className="flex flex-col gap-4">
           <CustomInput text={course?.name} courseId={course?.id} />
+          <div className="flex flex-row gap-6 items-center">
           <h2 className="text-lg font-bold">Estudiantes</h2>
+          <IconButton icon={<MdPersonAddAlt1 color="#ffffff" className="w-6 h-6"/>} className="hover:bg-blue-600 w-10 h-10 bg-blue-500 rounded-md flex items-center justify-center" 
+          onClick={handleAddStudentToCourse}
+          />
+          </div>
           <ul
             className="p-2 flex flex-col gap-2 
               border-2 border-gray-200 rounded-md max-h-48
@@ -74,6 +87,7 @@ export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
           <IconButton icon={<BsFillTrashFill color="#fff" className="w-5 h-5"/>} className="bg-red-500 
           hover:bg-red-600 rounded-lg w-10 h-10 flex items-center justify-center" />
         </div>
+        <AddStudentToCourseDialog open={isDialogOpen} setOpen={()=>{setIsOpen(true)}} />
       </Dialog.Panel>
     </BaseDialog>
   );
