@@ -18,7 +18,7 @@ export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   const handleAddStudentToCourse = ()=>{
-    setIsDialogOpen(true);s
+    setIsDialogOpen(true);
   }
 
   const handleDeleteCourse = async () => {
@@ -87,7 +87,7 @@ export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
           <IconButton icon={<BsFillTrashFill color="#fff" className="w-5 h-5"/>} className="bg-red-500 
           hover:bg-red-600 rounded-lg w-10 h-10 flex items-center justify-center" />
         </div>
-        <AddStudentToCourseDialog open={isDialogOpen} setOpen={()=>{setIsOpen(true)}} />
+        <AddStudentToCourseDialog open={isDialogOpen} onClose={()=>{setIsDialogOpen(false)}}/>
       </Dialog.Panel>
     </BaseDialog>
   );
