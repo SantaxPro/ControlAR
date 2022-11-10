@@ -5,7 +5,7 @@ const StudentCard = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div
-      className="bg-neutral-200 p-5 rounded-lg hover:bg-neutral-300"
+      className="bg-gray-100 p-5 rounded-lg hover:bg-gray-200 shadow-md"
       onClick={() => {
         setIsOpen(true);
       }}

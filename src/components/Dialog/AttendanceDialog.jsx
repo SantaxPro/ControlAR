@@ -17,8 +17,6 @@ export const AttendanceDialog = ({open, setOpen, course, requestAttendanceRegist
         <section>
           <p className='font-medium'>Nombre del curso: {course?.name}</p>
           <p className='font-medium'>Fecha {new Date().toLocaleString()}</p>
-          <p className='font-medium'>Ultimo registro: </p>
-          <span>{/*Aca iria la fecha del ultimo registro de asistencia de el curso*/}</span>
         </section>
         <div className='flex flex-row justify-around my-2'>
         <Button title='Crear' onClick={()=>{requestAttendanceRegistry()}}/>

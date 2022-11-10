@@ -25,8 +25,11 @@ export const AttendanceProcess = () => {
   } = useOperations();
 
   const [isRegistryReady, setIsRegistryReady] = React.useState(false);
-  //Current empieza en 1 por que 
-  const [internalCount, setInternalCount] = React.useState({current: 1, total: students.length});
+  //Current empieza en 1 por que
+  const [internalCount, setInternalCount] = React.useState({
+    current: 1,
+    total: students.length,
+  });
 
   const handleCancel = () => {
     navigate("/courses");
@@ -42,7 +45,7 @@ export const AttendanceProcess = () => {
     setInternalCount((prev) => ({ ...prev, total: students.length }));
     return () => {
       setIsCourseAttendanceReady(false);
-    }
+    };
   }, [students]);
 
   const handleInternalCount = () => {
@@ -55,35 +58,34 @@ export const AttendanceProcess = () => {
   //ESta funcion se ejecuta cuando el registro fue finalizado
   //Osea cuando a todos los alumnos se les asigno un estado
   const handleRegistryReady = () => {
-    
-  
     addRegistryToCourse(id, registryId);
 
     navigate("/courses");
     setIsCourseAttendanceReady(false);
   };
 
-
   return (
     <div className="p-6 bg-screen flex flex-col">
-      <span className="text-2xl font-bold">
-        {course?.name} - Asistencia {new Date().toLocaleDateString()}
-      </span>
-      <div className="flex flex-row gap-6">
-        <Button
-          title="Listo"
-          onClick={handleRegistryReady}
-          className={`h-8 w-fit flex items-center my-3 ${
-            isRegistryReady
-              ? "bg-green-400"
-              : "bg-transparent border-2 border-gray-600 text-d-blue cursor-default opacity-60"
-          }`}
-        />
-        <Button
-          title="Cancelar"
-          onClick={handleCancel}
-          className="h-8 w-fit flex items-center my-3 bg-red-400 text-white"
-        />
+      <div className="w-full bg-gray-100 shadow-lg rounded-md p-8">
+        <span className="text-2xl font-bold">
+          {course?.name} - Asistencia {new Date().toLocaleDateString()}
+        </span>
+        <div className="flex flex-row gap-6">
+          <Button
+            title="Listo"
+            onClick={handleRegistryReady}
+            className={`h-8 w-fit flex items-center my-3 ${
+              isRegistryReady
+                ? "bg-green-400"
+                : "bg-transparent border-2 border-gray-600 text-d-blue cursor-default opacity-60"
+            }`}
+          />
+          <Button
+            title="Cancelar"
+            onClick={handleCancel}
+            className="h-8 w-fit flex items-center my-3 bg-red-400 text-white"
+          />
+        </div>
       </div>
       <section className="flex flex-col">
         {students?.map((student) => {
@@ -93,8 +95,8 @@ export const AttendanceProcess = () => {
               student={student}
               course={course}
               registryId={registryId}
-              updateInternalCount={ () => {
-                handleInternalCount()
+              updateInternalCount={() => {
+                handleInternalCount();
               }}
             />
           );
@@ -103,7 +105,7 @@ export const AttendanceProcess = () => {
           <div className="flex flex-col items-center">
             <span className="text-2xl font-bold">¡Asistencia tomada!</span>
             <span className="text-xl font-bold">
-              {internalCount.current -1} de {internalCount.total} alumnos
+              {internalCount.current - 1} de {internalCount.total} alumnos
             </span>
           </div>
         )}

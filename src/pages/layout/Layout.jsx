@@ -1,12 +1,14 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { EmptyNavigationBar, NavigationBar } from '../../components/NavigationBar'
 
 export const NavigationLayout = ({children, empty, text}) => {
   return (
-    <div className='w-full h-full mt-16'>
+    <motion.div 
+    className='w-full h-full mt-16'>
       {empty ? <EmptyNavigationBar text={text} /> : <NavigationBar/>}
         {children}
-    </div>
+    </motion.div>
   )
 }
 

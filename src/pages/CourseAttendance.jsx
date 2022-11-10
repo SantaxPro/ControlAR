@@ -35,8 +35,8 @@ export const CourseAttendance = () => {
       <div className="p-6 w-full h-full">
         <div className="flex flex-col gap-4">
           <Button title="Tomar asistencia" onClick={()=>{setOpen(true)}}/>
-          <span>Cantidad de alumnos: {course?.students.length}</span>
-          <span>Alumnos</span>
+          <span className="text-xl font-bold">Alumnos</span>
+          <span className="font-medium">Cantidad de alumnos: {course?.students.length}</span>
           <table className="border-2 border-gray-200">
             <tbody> 
             {students?.map((student) => {

@@ -11,7 +11,7 @@ export const ActionBar = ({ openDialog, name }) => {
         text-blue-500
         border-blue-500 hover:bg-blue-500 hover:text-white border-2 transition-all ease-in-out duration-200"/>
       
-        <p className="flex flex-row items-center gap-2 w-5/12">
+        <p className="flex flex-row items-center gap-2 w-5/12 p-2 shadow-sm rounded-md">
           <span>
             <AiOutlineSearch className="w-6 h-6" />
           </span>

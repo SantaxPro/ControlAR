@@ -2,6 +2,7 @@
 
 import StudentCard from "./StudentCard";
 import { CourseCard } from "./CourseCard";
+import { RegistryCard } from "./RegistryCard";
 
-export { StudentCard, CourseCard };
+export { StudentCard, CourseCard, RegistryCard };
 
