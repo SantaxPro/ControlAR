@@ -9,6 +9,7 @@ import {
 import { NavigationLayout, EmptyNavigationLayout } from "./layout/Layout";
 
 export const AttendanceSheet = () => {
+  const [open, setOpen] = React.useState(false);
   const { id } = useParams(); //Obtiene el id del curso a traves de la url
   const { course } = useSingleCourse(id); //Obtengo los datos del curso usando el hook useSingleCourse al que le paso la id
   const { registries } = useRegistriesByCourse(id); //EStos son todos los registros de asistencia del curso
@@ -18,7 +19,7 @@ export const AttendanceSheet = () => {
         <h1 className="text-xl font-medium m-4">{course?.name} - Registros</h1>
         <div className="flex flex-col gap-4 m-4">
             {registries.map((registry) => {
-                return <RegistryCard key={registry.id} {...registry} />;
+                return <RegistryCard key={registry.id} {...registry} openRegistry={()=>{setOpen(true)}} />;
             })}
         </div>
       </div>
