@@ -32,7 +32,9 @@ export const AddStudentDialog = ({ isOpen, onClose }) => {
     const handleSelectCourse = (e) => {
       setSelectedCourse(e.target.value);
     };
-  
+    
+    
+
     return (
       <BaseDialog isOpen={isOpen} onClose={onClose}>
         <Dialog.Panel className="flex items-start flex-col gap-4 mx-auto max-w-sm p-8 rounded bg-white">

@@ -1,11 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "../components/Button";
+import { UserAuth } from "../context/AuthContext";
 import { useOperations } from "../context/OperationsContext";
 import useSingleCourse from "../hooks/useSingleCourse";
 import { useStudentsByCourse } from "../hooks/useStudents";
-import { Button } from "../components/Button";
-import { UserAuth } from "../context/AuthContext";
 
 // createAttendanceRegistry(id, user.displayName, new Date()).then(
 //   (registryId) => {
@@ -126,6 +125,8 @@ const Student = ({ student, course, registryId, updateInternalCount }) => {
         id: student.id,
       },
       state,
+      isJustified: false,
+      reason: "",
     });
     updateInternalCount();
   };

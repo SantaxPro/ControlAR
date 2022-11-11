@@ -1,12 +1,15 @@
-import React from "react";
-import { IconButton } from "../Button";
-import { BsFillTrashFill } from "react-icons/bs";
 import { motion } from "framer-motion";
+import React from "react";
+import { BsFillTrashFill } from "react-icons/bs";
+import { useNavigate, useParams } from "react-router-dom";
+import { IconButton } from "../Button";
 
 export const RegistryCard = (props) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const handleOpenRegistry = (e) => {
-    e.stopPropagation()
-    props.openRegistry(props.id);
+    e.stopPropagation();
+    navigate(`/courses/${id}/sheet/${props.id}`);
   };
   return (
     <motion.div

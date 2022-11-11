@@ -1,9 +1,9 @@
 import React from "react";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import { NavLink } from "./NavLink";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 import NavigationBarContainer from "./NavigationBarContainer";
+import { NavLink } from "./NavLink";
 
 export const NavigationBar = () => {
   const { user } = UserAuth();
@@ -27,7 +27,7 @@ export const NavigationBar = () => {
   );
 };
 
-export const EmptyNavigationBar = ({text}) => {
+export const EmptyNavigationBar = ({ text }) => {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
@@ -35,21 +35,15 @@ export const EmptyNavigationBar = ({text}) => {
   return (
     <NavigationBarContainer>
       <AiOutlineArrowLeft className="mr-auto w-6 h-7 ml-2" onClick={goBack} />
-      {text && <BarTitle text={text}/>}
+      {text && <BarTitle text={text} />}
     </NavigationBarContainer>
   );
 };
 
-const BarTitle = ({text})=>{
+const BarTitle = ({ text }) => {
   return (
     <span className="mr-auto font-medium text-1xl flex flex-col items-center">
-      {text} - Asistencia
-      <span>
-        {new Date().toLocaleDateString()}
-      </span>
+      {text}
     </span>
-  )
-
-}
-
-
+  );
+};

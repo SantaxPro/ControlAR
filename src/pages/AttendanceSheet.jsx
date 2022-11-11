@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useSingleCourse from "../hooks/useSingleCourse";
 import { RegistryCard } from "../components/Card";
 import {
-  useSingleRegistry,
   useRegistriesByCourse,
+  useSingleRegistry,
 } from "../hooks/useRegistries";
-import { NavigationLayout, EmptyNavigationLayout } from "./layout/Layout";
+import useSingleCourse from "../hooks/useSingleCourse";
+import { EmptyNavigationLayout, NavigationLayout } from "./layout/Layout";
 
 export const AttendanceSheet = () => {
   const [open, setOpen] = React.useState(false);
@@ -18,9 +18,16 @@ export const AttendanceSheet = () => {
       <div className="p-4">
         <h1 className="text-xl font-medium m-4">{course?.name} - Registros</h1>
         <div className="flex flex-col gap-4 m-4">
-            {registries.map((registry) => {
-                return <RegistryCard key={registry.id} {...registry} openRegistry={()=>{setOpen(true)}} />;
-            })}
+          {registries.map((registry) => {
+            return (
+              <RegistryCard key={registry.id} {...registry} id={registry.id} />
+            );
+          })}
+          {registries.length === 0 && (
+            <h1 className="text-xl font-medium m-4 text-gray-500">
+              No hay registros de asistencia
+            </h1>
+          )}
         </div>
       </div>
     </EmptyNavigationLayout>
