@@ -1,15 +1,15 @@
 import {
   addDoc,
+  arrayRemove,
+  arrayUnion,
   collection,
   deleteDoc,
+  deleteField,
   doc,
   updateDoc,
-  arrayUnion,
-  arrayRemove,
-  deleteField,
 } from "firebase/firestore";
-import { db } from "../database/firebase";
 import { createContext, useContext, useEffect, useState } from "react";
+import { db } from "../database/firebase";
 
 const OperationsContext = createContext();
 
@@ -91,7 +91,7 @@ export const OperationsProvider = ({ children }) => {
 
   const addStudentAttendanceEntry = async (registryId, studentEntry) => {
     await updateDoc(doc(db, "attendanceRegistries", registryId), {
-      studentEntrys: arrayUnion(studentEntry ),
+      studentEntrys: arrayUnion(studentEntry),
     });
   };
 
@@ -129,6 +129,38 @@ export const OperationsProvider = ({ children }) => {
     });
   };
 
+  const updateStudentJustification = async (
+    registryId,
+    student,
+    justification
+  ) => {
+    await updateDoc(doc(db, "attendanceRegistries", registryId), {
+      studentEntrys: arrayRemove({
+        reason: "",
+        isJustified: false,
+        state: "non-present",
+        student: {
+          name: student.name,
+          lastname: student.lastname,
+          id: student.id,
+        },
+      }),
+    }).then(() => {
+      updateDoc(doc(db, "attendanceRegistries", registryId), {
+        studentEntrys: arrayUnion({
+          reason: justification,
+          isJustified: true,
+          state: "non-present",
+          student: {
+            name: student.name,
+            lastname: student.lastname,
+            id: student.id,
+          },
+        }),
+      });
+    });
+  };
+
   return (
     <OperationsContext.Provider
       value={{
@@ -146,7 +178,8 @@ export const OperationsProvider = ({ children }) => {
         addStudentAttendanceEntry,
         createAttendanceRegistry,
         deleteAttendanceRegistry,
-        addRegistryToCourse
+        addRegistryToCourse,
+        updateStudentJustification,
       }}
     >
       {children}

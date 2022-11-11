@@ -42,6 +42,7 @@ const StudentEntryCard = ({
   isJustified,
   openJustifyDialog,
 }) => {
+  const { registryId } = useParams();
   const [open, setOpen] = React.useState(false);
   const stateColor =
     state === "present"
@@ -49,6 +50,8 @@ const StudentEntryCard = ({
       : state === "late"
       ? "bg-yellow-500"
       : "bg-red-500";
+  const stateName =
+    state === "present" ? "Presente" : state === "late" ? "Tarde" : "Ausente";
 
   const handleJustify = () => {
     setOpen(true);
@@ -75,13 +78,18 @@ const StudentEntryCard = ({
           <h1 className="text-sm text-green-500 font-medium">Justificado</h1>
         )}
 
-        <h1 className={`p-2 rounded-md text-white ${stateColor}`}>{state}</h1>
+        <h1 className={`p-2 rounded-md text-white ${stateColor}`}>
+          {stateName}
+        </h1>
       </div>
       <JustifyAttendanceDialog
         open={open}
         onClose={() => {
           setOpen(false);
         }}
+        student={student}
+        state={state}
+        registryId={registryId}
       />
     </div>
   );
