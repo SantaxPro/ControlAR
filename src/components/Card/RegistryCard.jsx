@@ -2,14 +2,21 @@ import { motion } from "framer-motion";
 import React from "react";
 import { BsFillTrashFill } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
+import { useOperations } from "../../context/OperationsContext";
 import { IconButton } from "../Button";
 
 export const RegistryCard = (props) => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { deleteRegistry } = useOperations();
+
   const handleOpenRegistry = (e) => {
     e.stopPropagation();
     navigate(`/courses/${id}/sheet/${props.id}`);
+  };
+  const handleDeleteRegistry = async (e) => {
+    e.stopPropagation();
+    await deleteRegistry(id, props.id);
   };
   return (
     <motion.div
@@ -29,6 +36,7 @@ export const RegistryCard = (props) => {
         Registro {props.date.toDate().toLocaleDateString()}
       </h1>
       <IconButton
+        onClick={handleDeleteRegistry}
         icon={<BsFillTrashFill color="#fff" className="w-4 h-4" />}
         className="bg-red-500 
           hover:bg-red-600 rounded-lg w-8 h-8 flex items-center justify-center"

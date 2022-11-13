@@ -16,7 +16,7 @@ export const CourseCard = (props) => {
   };
   const handleAttendanceClick = (e) => {
     //STop propagation
-    navigate("/courses/" + id + "/attendance");
+    navigate("/courses/" + props.id + "/attendance");
   };
 
   if (props.isListView) {

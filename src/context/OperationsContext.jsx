@@ -129,6 +129,14 @@ export const OperationsProvider = ({ children }) => {
     });
   };
 
+  const deleteRegistry = (courseId, registryId) => {
+    updateDoc(doc(db, "courses", courseId), {
+      attendanceEntrys: arrayRemove(registryId),
+    }).then(() => {
+      deleteDoc(doc(db, "attendanceRegistries", registryId));
+    });
+  };
+
   const updateStudentJustification = async (
     registryId,
     student,
@@ -180,6 +188,7 @@ export const OperationsProvider = ({ children }) => {
         deleteAttendanceRegistry,
         addRegistryToCourse,
         updateStudentJustification,
+        deleteRegistry,
       }}
     >
       {children}
