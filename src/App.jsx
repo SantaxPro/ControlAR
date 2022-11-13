@@ -6,10 +6,10 @@ import { OperationsProvider } from "./context/OperationsContext";
 import { AttendanceProcess } from "./pages/AttendanceProcess";
 import { AttendanceSheet } from "./pages/AttendanceSheet";
 import { CourseAttendance } from "./pages/CourseAttendance";
-import { Registry } from "./pages/Registry";
 import Courses from "./pages/Courses";
 import Login from "./pages/Login";
 import ProfileScreen from "./pages/Profile";
+import { Registry } from "./pages/Registry";
 import Students from "./pages/Students";
 import styles from "./test.module.css";
 function App() {

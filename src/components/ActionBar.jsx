@@ -1,9 +1,16 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Button } from "./Button";
+import { BsListUl } from "react-icons/bs";
+import { Button, IconButton } from "./Button";
 
-export const ActionBar = ({ openDialog, name }) => {
+export const ActionBar = ({
+  openDialog,
+  name,
+  isList,
+  toggleView,
+  student,
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -20,20 +27,29 @@ export const ActionBar = ({ openDialog, name }) => {
         text-blue-500
         border-blue-500 hover:bg-blue-500 hover:text-white border-2 transition-all ease-in-out duration-200"
       />
-
-      <p className="flex flex-row items-center gap-2 w-5/12 p-2 shadow-sm rounded-md">
+      {!student && (
         <span>
-          <AiOutlineSearch className="w-6 h-6" />
+          <IconButton
+            onClick={toggleView}
+            icon={<BsListUl className="h-5 w-5" />}
+            className="w-10 h-10 bg-gray-300 hover:bg-gray-400 transition-color duration-150 ease-in-out rounded-lg border-1 border-gray-50 flex items-center justify-center"
+          />
         </span>
-        Buscar
-      </p>
+      )}
     </motion.div>
   );
 };
 
-export const CourseActionBar = ({ openDialog }) => {
-  return <ActionBar openDialog={openDialog} name="Curso" />;
+export const CourseActionBar = ({ openDialog, isList, toggleView }) => {
+  return (
+    <ActionBar
+      openDialog={openDialog}
+      name="Curso"
+      isList={isList}
+      toggleView={toggleView}
+    />
+  );
 };
 export const StudentActionBar = ({ openDialog }) => {
-  return <ActionBar openDialog={openDialog} name="Estudiante" />;
+  return <ActionBar openDialog={openDialog} name="Estudiante" student />;
 };

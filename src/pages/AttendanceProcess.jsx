@@ -59,7 +59,7 @@ export const AttendanceProcess = () => {
   const handleRegistryReady = () => {
     addRegistryToCourse(id, registryId);
 
-    navigate("/courses");
+    navigate(`/courses/${id}/sheet/${registryId}`);
     setIsCourseAttendanceReady(false);
   };
 
