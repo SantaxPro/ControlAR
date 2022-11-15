@@ -94,6 +94,7 @@ export const DetailsCourseDialog = ({ isOpen, onClose, course }) => {
           />
         </div>
         <AddStudentToCourseDialog
+          courseId={course?.id}
           open={isDialogOpen}
           onClose={() => {
             setIsDialogOpen(false);

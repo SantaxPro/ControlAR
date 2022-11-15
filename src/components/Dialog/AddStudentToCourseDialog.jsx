@@ -2,14 +2,17 @@ import React,{useState} from 'react'
 import BaseDialog from './BaseDialog'
 import { Dialog } from '@headlessui/react'
 import {Button} from "../Button";
+import { useOperations } from '../../context/OperationsContext';
 
-export const AddStudentToCourseDialog = ({open, onClose}) => {
+export const AddStudentToCourseDialog = ({courseId, open, onClose}) => {
     const [studentName, setStudentName] = useState("");
     const [studentLastName, setStudentLastName] = useState("");
-     
-const HandleAddStudentToCourse = () => {
-
-
+    const {StudentToCourse}=useOperations();
+const HandleAddStudentToCourse = async () => {
+    await StudentToCourse(courseId, {name:studentName, lastname:studentLastName} );
+    onClose();
+    setStudentName("");
+    setStudentLastName("");
 }
 
   return (

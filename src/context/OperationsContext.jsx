@@ -169,6 +169,24 @@ export const OperationsProvider = ({ children }) => {
     });
   };
 
+
+  const StudentToCourse = async (courseId, student) => {
+    await addDoc(collection(db, "students"), {
+      name: student.name,
+      lastname: student.lastname,
+      course: { id: courseId },
+    }).then((createdStudent) => {
+      updateDoc(doc(db, "courses", courseId), {
+        students: arrayUnion({
+          name: student.name,
+          lastname: student.lastname,
+          course: { id: courseId },
+          id: createdStudent.id,
+        }),
+      });
+    });
+  };
+
   return (
     <OperationsContext.Provider
       value={{
@@ -189,6 +207,7 @@ export const OperationsProvider = ({ children }) => {
         addRegistryToCourse,
         updateStudentJustification,
         deleteRegistry,
+        StudentToCourse,
       }}
     >
       {children}
@@ -197,5 +216,6 @@ export const OperationsProvider = ({ children }) => {
 };
 
 export const useOperations = () => {
+
   return useContext(OperationsContext);
 };
